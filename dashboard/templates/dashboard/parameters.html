@@ -1,0 +1,130 @@
+{% extends "dashboard/layout.html" %}
+{% load static %}
+{% load to_persian_date %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block ofbar %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="rtl text-right mb-5">
+    {% for app in my_apps %}
+
+    <a class="btn btn-{{app.color}}" href="{% url 'dashboard:parameters' app_name=app.name %}">
+        {{app.title}}
+    </a>
+
+    {% endfor %}
+</div>
+
+<div id="app">
+    <div class="text-center">
+
+        <a href="{{my_app.home_url}}" class="btn btn-success">
+            <i class="material-icons">
+                home
+            </i>
+            {{my_app.title}}</a>
+    </div>
+    <form @submit.prevent="change_parameter(parameter.id,parameter.name,parameter.value)"
+        v-for="parameter in parameters">
+        <div class="row">
+            <div class="col-md-4">
+                <span v-text="parameter.name"></span>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" v-model="parameter.value">
+
+
+            </div>
+            <div class="col-md-1">
+                <a target="_blank" title="ویرایش" :href="parameter.get_edit_url">
+                    <i class="fa fa-edit text-primary"></i>
+                </a>
+                <a target="_blank" title="حذف" :href="parameter.get_delete_url">
+                    <i class="fa fa-trash text-danger"></i>
+                </a>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-success">
+                    OK
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block modal %}
+
+{% endblock %}
+
+
+
+{% block script %}
+{% if DEBUG %}
+<script src="{% static 'vendor/js/vue.js' %}"></script>
+{% else %}
+<script src="{% static 'vendor/js/vue.min.js' %}"></script>
+{% endif %}
+<script>
+    let app_name = "{{app_name}}"
+    let parameters = JSON.parse("{{parameters_s|escapejs}}")
+    let url_change_parameter = "{% url 'core:change_parameter' %}"
+    let app = new Vue({
+        el: "#app",
+        data: {
+            parameters: parameters,
+        },
+        methods: {
+            change_parameter: function (parameter_id, parameter_name, parameter_value) {
+               
+                let payload = {
+                    parameter_id: parameter_id,
+                    parameter_value: parameter_value,
+                    app_name: app_name,
+                    // parameter_name: parameter_name,
+                    csrfmiddlewaretoken: csrfmiddlewaretoken
+                }
+                
+                var posting = $.post(url_change_parameter, payload);
+
+                // Put the results in a div
+                posting.done(function (data) {
+                    if (data.result === 'SUCCEED') {
+                        app.parameters.forEach(parameter => {
+                            if (parameter.id == data.parameter.id)
+                                parameter.value = data.parameter.value
+                        });
+              
+                        message =
+                            `
+                        <p>
+                        با موفقیت تغییر یافت
+                        </p>            
+                        `
+
+                        showNotification('bottom', 'left', 'chat', 'success', message)
+                    }
+                    else {
+                        
+                    }
+                })
+
+
+            },
+        },
+    })
+</script>
+{% endblock %}

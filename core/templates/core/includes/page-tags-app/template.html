@@ -1,0 +1,75 @@
+{% load static %}
+<div id="accordion-page-tags">
+
+    <div class="card" id="page-tags-app">
+        <div class="card-header" id="headingPageTags">
+            <h5 class="text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapsePageTags" aria-expanded="true"
+                    aria-controls="collapsePageTags">
+                    برچسب ها </button>
+            </h5>
+
+
+        </div>
+
+        <div id="collapsePageTags" class="collapse {% if page.tags.all %}show{% endif %}" aria-labelledby="headingPageTags" 
+        data-parent="#accordion-page-tags">
+
+
+            <div class="card-body">
+                <div class="rtl text-right">
+                    {% if not add_page_tag_form %}
+                    {% for tag in page_tags1 %}
+
+                        <a class="mx-1 my-1 farsi" href="{{tag.get_absolute_url}}">
+                            <span class="material-icons">
+                                local_offer
+                            </span>
+
+                            {{tag.title}}
+
+                        </a>
+
+
+
+
+
+                    {% endfor %}
+
+                    {% endif %}
+
+                    <template v-for="tag in tags" class=" mx-2 my-2 farsi">
+
+                        <a :href="tag.get_absolute_url" class=" mx-1 farsi">
+                            <span class="material-icons">
+                                local_offer
+                            </span>&nbsp;<span v-text="tag.title"></span>
+                        </a>&nbsp;{% if remove_page_tag_form %}<span style="cursor: pointer;" title="حذف برچسب" class="material-icons text-secondary"
+                            @click="remove_tag(tag.id)">
+                            clear
+                        </span>
+                        {% endif %}
+                    </template>
+
+                    {% if add_page_tag_form %}
+
+
+                    <img src="{% static 'leo/img/loading.gif' %}" width="32" v-if="waiting" alt="">
+                    <form @submit.prevent="add_page_tag()">
+                        <input required type="text" v-model="tag_title" class="form-control" style="width: 8em;"
+                            placeholder="تگ جدید">
+
+
+
+
+
+                    </form>
+
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

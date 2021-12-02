@@ -1,0 +1,13 @@
+{% extends "core/layout.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+
+    {% for page in pages %}
+
+    <div class="col-md-4">
+  {% include "core/includes/page-card.html" %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

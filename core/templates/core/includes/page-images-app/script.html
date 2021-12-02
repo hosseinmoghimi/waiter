@@ -1,0 +1,53 @@
+<script>
+    let url_add_page_image = "{% url 'core:add_page_image' %}"
+    let images = JSON.parse(`{{images_s|escapejs}}`)
+    let page_images_app = new Vue({
+        el: "#page-images-app",
+        data: {
+            add_page_image_form_title: "",
+            images: images,
+
+            add_page_image_form_file: '',
+            show_add_page_image_form: false,
+            waiting: false,
+        },
+        methods: {
+            add_page_image: function () {
+                page_images_app.waiting = true
+                let title = this.add_page_image_form_title
+                let formData = new FormData();
+                let image = $('#add-page-image-form')[0].elements[1].files[0]
+                formData.append("image", image);
+                formData.append("title", title);
+                formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
+                formData.append("page_id", page_id);
+
+                $.ajax({
+                    url: url_add_page_image,
+                    type: 'post',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        page_images_app.waiting = false
+
+                        if (data != 0) {
+                            //console.log(data)
+                            if (data.result === 'SUCCEED') {
+                                page_images_app.images.push(data.page_image.image)
+                                page_images_app.add_page_image_form_title = ''
+                                page_images_app.add_page_image_form_file = ''
+                                page_images_app.show_add_page_image_form = false
+
+                            }
+                        }
+                        else {
+                        }
+                    },
+                });
+
+            },
+
+        }
+    })
+</script>

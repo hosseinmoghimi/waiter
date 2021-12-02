@@ -1,0 +1,77 @@
+{% load static %}
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76" href="{{app.favicon.image}}">
+<link rel="icon" type="image/png" href="{{app.favicon.image}}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>
+  {{app.title.value}}
+  {% if page.title %}
+  | {{page.title}}
+  {% endif %}
+
+
+
+
+</title>
+
+
+
+<!-- {1% if app.GOOGLE_SEARCH_CONSOLE_TAG %} {{app.GOOGLE_SEARCH_CONSOLE_TAG.value|safe}} {% endif %1} -->
+
+<!-- keywords -->
+<meta name="description"
+  content="Author:Hossein Moghimi ,{% for meta_data in app.meta_data_items %}{{meta_data.content}} , {% endfor %}" />
+<meta name="robots"
+  content="Author:Hossein Moghimi ,{% for meta_data in app.meta_data_items %}{{meta_data.content}} , {% endfor %}" />
+<!--  end keywords -->
+
+
+
+
+<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+<!-- Extra details for Live View on GitHub Pages -->
+<!-- Canonical SEO -->
+<link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
+<!--  Social tags      -->
+
+
+
+<meta name="keywords"
+  content="{% for meta_data in app.meta_data_items %}{{meta_data.content}} , {% endfor %}">
+<!-- <meta name="description111"
+    content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design."> -->
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="{{page.title}}">
+<meta itemprop="description"
+  content="{{app.title.value}}">
+<meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="product">
+<meta name="twitter:site" content="@creativetim">
+<meta name="twitter:title" content="{{page.title}}">
+<meta name="twitter:description"
+  content="{{app.title.value}}">
+<meta name="twitter:creator" content="@creativetim">
+<meta name="twitter:image"
+  content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+<!-- Open Graph data -->
+<meta property="fb:app_id" content="655968634437471">
+<meta property="og:title" content="{{page.title}}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html" />
+<meta property="og:image"
+  content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg" />
+<meta property="og:description"
+  content="{{app.title.value}}" />
+<meta property="og:site_name" content="{{app.title.value}} ... " />
+<!--     Fonts and icons     -->
+<link rel="stylesheet" href="{% static 'vendor/css/material-icons.css' %}">
+<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" /> -->
+<link rel="stylesheet" href="{% static 'vendor/css/font-awesome.min.css' %}">
+<!-- CSS Files -->
+<link href="{% static 'dashboard/css/bootstrap-rtl.css' %}" rel="stylesheet">
+<link href="{% static 'dashboard/css/material-dashboard.min.css' %}" rel="stylesheet" />
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="{% static 'dashboard/css/demo.css' %}" rel="stylesheet" />
+<link href="{% static 'leo/css/font-farsi.css' %}" rel="stylesheet" />
+<link href="{% static 'dashboard/css/leo.css' %}" rel="stylesheet" />

@@ -1,0 +1,694 @@
+{% extends "dashboard/layout.html" %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="row">
+   
+    {% if profile %}
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header   card-header-icon">
+                <div class="card-icon" style="background: none!important;margin-top:-70px!important;">
+                      <div class="profile text-center" style="">
+
+                    <div class="avatar text-center">
+                        <img width="128" src="{{selected_profile.image}}" alt="Circle Image"
+                        class="img-raised rounded-circle img-fluid">
+                    </div>
+                </div>
+                </div>
+              
+                <p class="card-category">پروفایل فعال</p>
+                <h3 class="card-title">{{selected_profile.name}}</h3>
+            </div>
+            <div class="card-body">
+                {% for employee in profile.employee_set_m.all %}
+                   <div class="mb-2">
+                    <i class="fa fa-user mx-2"></i>
+                    <span class="text-secondary  mx-2">
+
+                            {{employee.role}}
+                        </span>
+
+                    <a href="{{employee.work_unit.get_absolute_url}}" class=" mx-2">
+                        {{employee.work_unit.title}}
+                        
+                    </a>
+                    {{employee.work_unit.parent_page.title}}
+                </div>
+                {% endfor %}
+               
+
+            </div>
+            <div class="card-footer">
+                <div class="stats rtl ">
+                    <i class="material-icons text-success">warning</i>
+                    <a href="{{selected_profile.get_absolute_url}}">نمایش پروفایل</a>
+                    
+                    <i class="material-icons text-danger mr-3">warning</i>
+                    <a href="{{selected_profile.get_edit_url}}">ویرایش پروفایل</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endif %}
+    
+    <div class="col-lg-8 col-md-8 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">add_task</i>
+                </div>
+                <p class="card-category"> {{profile.name}}</p>
+                <h3 class="card-title">
+                    وظایف پرسنلی
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+                {% for employee in profile.employee_set_m.all %}
+               {% for assignment in employee.assignment_set.all %}
+                <div class="mb-2">
+                    <p>
+                        <span class="badge badge-{{assignment.get_status_color}}">{{assignment.status}}</span>
+
+                        <a href="{{assignment.get_absolute_url}}">
+
+                            {{assignment.title}}
+
+
+                        </a>
+
+                        <span class="small text-secondary">
+                            &nbsp;
+                            &nbsp;
+                            برای پروژه
+                            &nbsp;
+
+                        </span>
+                        <a class="mx-2" href="{{assignment.project_for.get_absolute_url}}">
+
+                            {{assignment.project_for.title}}
+                        </a>
+                    </p>
+
+                </div>
+                {% endfor %}
+  
+{% endfor %}
+
+             
+
+
+
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">local_offer</i> Tracked from Google Analytics
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    
+</div>
+
+{% for employee in profile.employee_set_m.all %}
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">apartment</i>
+                </div>
+                <p class="card-category"> {{employee.profile.name}}</p>
+                <h3 class="card-title">
+                    اطلاعات پرسنلی
+                </h3>
+            </div>
+            <div class="card-body">
+
+                <div class="mb-2">
+                    <i class="fa fa-user mx-2"></i>
+                    <span class="text-secondary  mx-2">
+
+                            {{employee.role}}
+                        </span>
+
+                    <a href="{{employee.work_unit.get_absolute_url}}" class=" mx-2">
+                        {{employee.work_unit.title}}
+                        
+                    </a>
+                    {{employee.work_unit.parent_page.title}}
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">add_task</i>
+                </div>
+                <p class="card-category"> {{profile.name}}</p>
+                <h3 class="card-title">
+                    وظایف پرسنلی
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+                {% for assignment in employee.assignment_set.all %}
+                <div class="mb-2">
+                    <p>
+                        <span class="badge badge-{{assignment.get_status_color}}">{{assignment.status}}</span>
+
+                        <a href="{{assignment.get_absolute_url}}">
+
+                            {{assignment.title}}
+
+
+                        </a>
+
+                        <span class="small text-secondary">
+                            &nbsp;
+                            &nbsp;
+                            برای پروژه
+                            &nbsp;
+
+                        </span>
+                        <a class="mx-2" href="{{assignment.project_for.get_absolute_url}}">
+
+                            {{assignment.project_for.title}}
+                        </a>
+                    </p>
+
+                </div>
+                {% endfor %}
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">book_online</i>
+                </div>
+                <p class="card-category"> {{profile.name}}</p>
+                <h3 class="card-title">
+                    پروژه های مرتبط
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+                {% for project in employee.work_unit.project_set.all %}
+                <div class="mb-2">
+                    <a href="{{project.get_absolute_url}}">
+                        {{project.title}}
+
+                    </a>
+
+
+                    {{project.get_status_tag|safe}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true"></i>
+                </div>
+                <h4 class="card-title">Global Sales by Top Locations</h4>
+            </div>
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="table-responsive table-sales">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{% static 'dashboard/img/flags/US.png' %}" </div>
+                                        </td>
+                                        <td>USA</td>
+                                        <td class="text-right">
+                                            2.920
+                                        </td>
+                                        <td class="text-right">
+                                            53.23%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{% static 'dashboard/img/flags/DE.png' %}" </div>
+                                        </td>
+                                        <td>Germany</td>
+                                        <td class="text-right">
+                                            1.300
+                                        </td>
+                                        <td class="text-right">
+                                            20.43%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{% static 'dashboard/img/flags/AU.png' %}" </div>
+                                        </td>
+                                        <td>Australia</td>
+                                        <td class="text-right">
+                                            760
+                                        </td>
+                                        <td class="text-right">
+                                            10.35%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{% static 'dashboard/img/flags/GB.png' %}" </div>
+                                        </td>
+                                        <td>United Kingdom</td>
+                                        <td class="text-right">
+                                            690
+                                        </td>
+                                        <td class="text-right">
+                                            7.87%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{% static 'dashboard/img/flags/RO.png' %}" </div>
+                                        </td>
+                                        <td>Romania</td>
+                                        <td class="text-right">
+                                            600
+                                        </td>
+                                        <td class="text-right">
+                                            5.94%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{% static 'dashboard/img/flags/BR.png' %}" </div>
+                                        </td>
+                                        <td>Brasil</td>
+                                        <td class="text-right">
+                                            550
+                                        </td>
+                                        <td class="text-right">
+                                            4.34%
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div id="worldMap" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-chart">
+            <div class="card-header card-header-rose" data-header-animation="true">
+                <div class="ct-chart" id="websiteViewsChart"></div>
+            </div>
+            <div class="card-body">
+                <div class="card-actions">
+                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
+                        <i class="material-icons" aria-hidden="true">build</i> بروزرسانی سربرگ
+                    </button>
+                    <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom"
+                        title="Refresh">
+                        <i class="material-icons" aria-hidden="true">refresh</i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
+                        title="Change Date">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                    </button>
+                </div>
+                <h4 class="card-title text-right ">بازدید های وب سایت</h4>
+                <p class="card-category">آخرین بازدید های وب سایت</p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">access_time</i> campaign sent 2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-chart">
+            <div class="card-header card-header-success" data-header-animation="true">
+                <div class="ct-chart" id="dailySalesChart"></div>
+            </div>
+            <div class="card-body">
+                <div class="card-actions">
+                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
+                        <i class="material-icons" aria-hidden="true">build</i> بروزرسانی سربرگ
+                    </button>
+                    <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom"
+                        title="Refresh">
+                        <i class="material-icons" aria-hidden="true">refresh</i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
+                        title="Change Date">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                    </button>
+                </div>
+                <h4 class="card-title text-right ">Daily Sales</h4>
+                <p class="card-category">
+                    <span class="text-success">
+                        <i class="fa fa-long-arrow-up"></i> 55%
+                    </span> increase in today sales.
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">access_time</i> updated 4 minutes ago
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-chart">
+            <div class="card-header card-header-info" data-header-animation="true">
+                <div class="ct-chart" id="completedTasksChart"></div>
+            </div>
+            <div class="card-body">
+                <div class="card-actions">
+                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
+                        <i class="material-icons" aria-hidden="true">build</i> بروزرسانی سربرگ
+                    </button>
+                    <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom"
+                        title="Refresh">
+                        <i class="material-icons" aria-hidden="true">refresh</i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
+                        title="Change Date">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                    </button>
+                </div>
+                <h4 class="card-title text-right ">Completed Tasks</h4>
+                <p class="card-category">Last Campaign Performance</p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">access_time</i> campaign sent 2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">weekend</i>
+                </div>
+                <p class="card-category">Bookings</p>
+                <h3 class="card-title">184</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-danger">warning</i>
+                    <a href="#pablo">Get More Space...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-rose card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">equalizer</i>
+                </div>
+                <p class="card-category">Website Visits</p>
+                <h3 class="card-title">75.521</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">local_offer</i> Tracked from Google Analytics
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons" aria-hidden="true">store</i>
+                </div>
+                <p class="card-category">Revenue</p>
+                <h3 class="card-title">$34,245</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">date_range</i> Last 24 Hours
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                    <i class="fa fa-twitter"></i>
+                </div>
+                <p class="card-category">Followers</p>
+                <h3 class="card-title">+245</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons" aria-hidden="true">update</i> Just Updated
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Manage Listings</h3>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-product">
+            <div class="card-header card-header-image" data-header-animation="true">
+                <a href="#pablo">
+                    <img class="img" src="{% static 'dashboard/img/card-1.jpg' %}">
+
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="card-actions text-center">
+                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
+                        <i class="material-icons" aria-hidden="true">build</i> بروزرسانی سربرگ
+                    </button>
+                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
+                        title="نمایش">
+                        <i class="material-icons" aria-hidden="true">art_track</i>
+                    </button>
+                    <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom"
+                        title="ویرایش">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom"
+                        title="حذف">
+                        <i class="material-icons" aria-hidden="true">close</i>
+                    </button>
+                </div>
+                <h4 class="card-title  text-right ">
+                    <a href="#pablo">Cozy 5 Stars Apartment</a>
+                </h4>
+                <div class="card-description">
+                    The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to
+                    "Naviglio" where you can enjoy the main night life in Barcelona.
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">
+                    <h4>$899/night</h4>
+                </div>
+                <div class="stats">
+                    <p class="card-category">
+                        <i class="material-icons" aria-hidden="true">place</i> Barcelona, Spain
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-product">
+            <div class="card-header card-header-image" data-header-animation="true">
+                <a href="#pablo">
+                    <img class="img" src="{% static 'dashboard/img/card-2.jpg' %}">
+
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="card-actions text-center">
+                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
+                        <i class="material-icons" aria-hidden="true">build</i> بروزرسانی سربرگ
+                    </button>
+                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
+                        title="نمایش">
+                        <i class="material-icons" aria-hidden="true">art_track</i>
+                    </button>
+                    <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom"
+                        title="ویرایش">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom"
+                        title="حذف">
+                        <i class="material-icons" aria-hidden="true">close</i>
+                    </button>
+                </div>
+                <h4 class="card-title text-right ">
+                    <a href="#pablo">Office Studio</a>
+                </h4>
+                <div class="card-description">
+                    The place is close to Metro Station and bus stop just 2 min by walk and near to
+                    "Naviglio" where you can enjoy the night life in London, UK.
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">
+                    <h4>$1.119/night</h4>
+                </div>
+                <div class="stats">
+                    <p class="card-category">
+                        <i class="material-icons" aria-hidden="true">place</i> London, UK
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-product">
+            <div class="card-header card-header-image" data-header-animation="true">
+                <a href="#pablo">
+                    <img class="img" src="{% static 'dashboard/img/card-3.jpg' %}">
+
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="card-actions text-center">
+                    <button type="button" class="btn btn-danger btn-link fix-broken-card">
+                        <i class="material-icons" aria-hidden="true">build</i> بروزرسانی سربرگ
+                    </button>
+                    <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom"
+                        title="نمایش">
+                        <i class="material-icons" aria-hidden="true">art_track</i>
+                    </button>
+                    <button type="button" class="btn btn-success btn-link" rel="tooltip" data-placement="bottom"
+                        title="ویرایش">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-link" rel="tooltip" data-placement="bottom"
+                        title="حذف">
+                        <i class="material-icons" aria-hidden="true">close</i>
+                    </button>
+                </div>
+                <h4 class="card-title">
+                    <a href="#pablo">Beautiful Castle</a>
+                </h4>
+                <div class="card-description">
+                    The place is close to Metro Station and bus stop just 2 min by walk and near to
+                    "Naviglio" where you can enjoy the main night life in Milan.
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="price">
+                    <h4>$459/night</h4>
+                </div>
+                <div class="stats">
+                    <p class="card-category">
+                        <i class="material-icons" aria-hidden="true">place</i> Milan, Italy
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block modal %}
+
+{% endblock %}
+
+
+
+{% block script %}
+<script>
+    $("#nav-item-dashboard").addClass("active")
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        md.initDashboardPageCharts();
+
+        md.initVectorMap();
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,183 @@
+{% load static %}
+<script src="{% static 'vendor/js/jquery.min.js' %}"></script>
+<script src="/static/material-dashboard-5/assets/js/core/popper.min.js"></script>
+<script src="/static/material-dashboard-5/assets/js/core/bootstrap.min.js"></script>
+<script src="/static/material-dashboard-5/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/static/material-dashboard-5/assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="/static/material-dashboard-5/assets/js/plugins/fullcalendar.min.js"></script>
+<!-- Kanban scripts -->
+<script src="/static/material-dashboard-5/assets/js/plugins/dragula/dragula.min.js"></script>
+<script src="/static/material-dashboard-5/assets/js/plugins/jkanban/jkanban.js"></script>
+<script src="/static/material-dashboard-5/assets/js/plugins/chartjs.min.js"></script>
+<script>
+    var ctx1 = document.getElementById("chart-widgets-1").getContext("2d");
+
+    new Chart(ctx1, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Calories",
+                tension: 0.5,
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#252f40",
+                borderWidth: 2,
+                backgroundColor: "transparent",
+                data: [50, 45, 60, 60, 80, 65, 90, 80, 100],
+                maxBarThickness: 6,
+                fill: true
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    ticks: {
+                        display: false
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    ticks: {
+                        display: false
+                    }
+                },
+            },
+        },
+    });
+
+    var ctx3 = document.getElementById("chart-line-widgets").getContext("2d");
+
+    var gradientStroke3 = ctx3.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke3.addColorStop(1, 'rgba(33,82,255,0.1)');
+    gradientStroke3.addColorStop(0.2, 'rgba(33,82,255,0.0)');
+    gradientStroke3.addColorStop(0, 'rgba(33,82,255,0)'); //purple colors
+
+    new Chart(ctx3, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Tasks",
+                tension: 0,
+                pointRadius: 5,
+                pointBackgroundColor: "#E91E63",
+                pointBorderColor: "transparent",
+                borderColor: "#E91E63",
+                borderWidth: 4,
+                backgroundColor: "transparent",
+                data: [40, 45, 42, 41, 40, 43, 40, 42, 39],
+                maxBarThickness: 6,
+                fill: true
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#9ca2b7',
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: '#c1c4ce5c'
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#9ca2b7',
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+</script>
+<script src="/static/material-dashboard-5/assets/js/plugins/choices.min.js"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="/static/material-dashboard-5/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+
+
+<script src="{% static 'utility/js/utility.js' %}"></script>
+<script>
+    let CURRENCY = "{{CURRENCY}}"
+    let current_datetime = "{{current_datetime}}"
+    let current_date = "{{current_date}}"
+    var csrfmiddlewaretoken = ''
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val()
+    })
+</script>

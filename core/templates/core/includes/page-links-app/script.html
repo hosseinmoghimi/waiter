@@ -1,0 +1,33 @@
+<script>
+    let url_add_page_link="{% url 'core:add_page_link' %}"
+    let links=JSON.parse(`{{links_s|escapejs}}`)
+    let page_links_app = new Vue({
+        el: "#page-links-app",
+        data: {
+            new_link_title: "",
+            new_link_url: "",
+            links: links,
+            show_add_link:false,
+        },
+        methods: {
+            add_page_link: function () {
+                let url = url_add_page_link
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    page_id: page_id,
+                    title: this.new_link_title,
+                    url: this.new_link_url,
+                }
+                let posting = $.post(url, payload)
+                posting.done((data) => {
+                    if (data.result === 'SUCCEED') {
+
+                        page_links_app.links.push(data.page_link)
+                        page_links_app.new_link_title = ""
+                        page_links_app.new_link_url = ""
+                    }
+                })
+            },
+        }
+    })
+</script>

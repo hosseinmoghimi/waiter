@@ -1,0 +1,21 @@
+{% extends "pinax/forums/layout__forums.html" %}
+
+
+{% block forums_content %}
+<div class="row">
+    <div class="col">
+
+        <h6>
+            <a href="{{forum.get_absolute_url}}">
+
+                {{forum.title}}
+            </a>
+        </h6>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block forums_script %}
+
+{% endblock %}

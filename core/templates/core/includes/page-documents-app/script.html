@@ -1,0 +1,52 @@
+<script>
+    let url_add_document = "{% url 'core:add_page_document' %}"
+    let documents=JSON.parse(`{{documents_s|escapejs}}`)
+    let page_documents_app = new Vue({
+        el: "#page-documents-app",
+        data: {
+            new_document_title: "",
+            documents: documents,
+            waiting: false,
+            new_document_file: '',
+            show_add_document_form: false,
+        },
+        methods: {
+            add_page_document: function () {
+                page_documents_app.waiting = true
+                let title = this.new_document_title
+                let formData = new FormData();
+                let file1 = $('#add-document-form')[0].elements[1].files[0]
+                formData.append("file1", file1);
+                formData.append("title", title);
+                formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
+                formData.append("page_id", page_id);
+
+                $.ajax({
+                    url: url_add_document,
+                    type: 'post',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        page_documents_app.waiting = false
+
+                        if (data != 0) {
+                            // //console.log(data)
+                            if (data.result === 'SUCCEED') {
+                                page_documents_app.documents.push(data.page_document)
+                                page_documents_app.new_document_title = ''
+                                page_documents_app.new_document_file = ''
+
+
+                            }
+                        }
+                        else {
+                        }
+                    },
+                });
+
+            },
+
+        }
+    })
+</script>

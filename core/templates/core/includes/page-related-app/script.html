@@ -1,0 +1,45 @@
+<script>
+    let related_pages=JSON.parse(`{{related_pages_s|escapejs}}`)
+    let related_pages_app = new Vue({
+        el: "#related-pages-app",
+        data: {
+            bidirectional: true,
+            related_page_id: "",
+            related_pages: related_pages,
+            show_add_form: false,
+            add: true,
+            button_text: "افزودن رابطه"
+        },
+        methods: {
+            change_button_text: function () {
+                setTimeout(() => {
+                    if (this.add) this.button_text = "افزودن رابطه"
+                    if (!this.add) this.button_text = "حذف رابطه"
+
+                }, 100);
+            },
+            add_related_page: function () {
+                let url = "{% url 'core:add_related_page' %}"
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    page_id: page_id,
+                    add_or_remove: this.add,
+                    bidirectional: related_pages_app.bidirectional,
+                    related_page_id: related_pages_app.related_page_id,
+                }
+                $.post(url, payload).done((data) => {
+                    if (data.result === 'SUCCEED') {
+                        related_pages_app.related_page_id = ""
+                        if (related_pages_app.add)
+                            related_pages_app.related_pages.push(data.related_page)
+                        if (!related_pages_app.add)
+                        related_pages_app.related_pages=related_pages_app.related_pages.filter(related_page=>related_page.id!=data.related_page.id)
+                    }
+                })
+            },
+
+
+
+        }
+    })
+</script>

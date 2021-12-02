@@ -1,0 +1,505 @@
+{% extends "dashboard/layout.html" %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+{% if profile %}
+<div class="row">
+    <div class="col-lg-12 col-md-4 col-sm-6">
+        {% include "dashboard/includes/profile-card.html" %}
+    </div>
+
+    <div class="col-md-12 ml-auto mr-auto">
+        <div class="page-categories">
+            <h3 class="title text-center">نقش های شما</h3>
+            <br>
+            <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center rtl" role="tablist">
+                {% for employee in selected_profile.employee_set_m.all %}
+                <li class="nav-item">
+                    <a class="nav-link" title="پرسنل" data-toggle="tab" href="#linkemployee{{employee.pk}}"
+                        role="tablist">
+                        <i class="material-icons" aria-hidden="true">engineering</i> {{employee.profile.name}}
+                    </a>
+                </li>
+                {% endfor %}
+
+                {% for employer in selected_profile.employer_set.all %}
+                <li class="nav-item">
+                    <a class="nav-link" title="کارفرما" data-toggle="tab" href="#linkemployer{{employer.pk}}"
+                        role="tablist">
+                        <i class="material-icons" aria-hidden="true">apartment</i> {{employer.title}}
+                    </a>
+                </li>
+                {% endfor %}
+
+                {% for customer in selected_profile.customer_set.all %}
+                <li class="nav-item">
+                    <a class="nav-link" title="مشتری" data-toggle="tab" href="#linkcustomer{{customer.pk}}"
+                        role="tablist">
+                        <i class="material-icons" aria-hidden="true">shopping_basket</i> {{customer.title}}
+                    </a>
+                </li>
+                {% endfor %}
+
+
+
+                {% for supplier in selected_profile.supplier_set.all %}
+                <li class="nav-item">
+                    <a class="nav-link" title="فروشنده" data-toggle="tab" href="#linksupplier{{supplier.pk}}"
+                        role="tablist">
+                        <i class="material-icons" aria-hidden="true">store</i> {{supplier.title}}
+                    </a>
+                </li>
+                {% endfor %}
+
+
+                {% for shipper in selected_profile.shipper_set.all %}
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#linkshipper{{shipper.pk}}" role="tablist">
+                        <i class="material-icons" aria-hidden="true">local_shipping</i> {{shipper.title}}
+                    </a>
+                </li>
+                {% endfor %}
+
+
+
+            </ul>
+            <div class="tab-content tab-space tab-subcategories">
+                {% for employee in selected_profile.employee_set_m.all %}
+
+                <div class="tab-pane" id="linkemployee{{employee.pk}}">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons" aria-hidden="true">add_task</i>
+                            </div>
+                            <p class="card-category"> {{selected_profile.name}}</p>
+                            <h3 class="card-title">
+                                وظایف پرسنلی
+
+
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <p>
+                                <a href="{{employee.get_absolute_url}}">
+                                    {{employee.profile.name}}
+                                </a>
+                                {{employee.role}}
+
+
+                                <a href="{{employee.work_unit.get_absolute_url}}">
+                                    {{employee.work_unit.title}}
+                                </a>
+
+                                موسسه
+
+                                <a href="{{employee.work_unit.employer.get_absolute_url}}">
+                                    {{employee.work_unit.employer.title}}
+                                </a>
+                            </p>
+                            {% for projectservice in employee.projectservices.all %}
+                            {% if projectservice.active %}
+
+                            <div class="mb-2">
+                                <p>
+                                    {{projectservice.get_status_tag|safe}}
+
+                                    <span class="small text-secondary">
+                                        &nbsp;
+                                        &nbsp;
+                                        پروژه
+                                        &nbsp;
+
+                                    </span>
+                                    <a class="mx-2" href="{{projectservice.for_project.get_absolute_url}}">
+
+                                        {{projectservice.for_project.title}}
+                                    </a>
+
+                                    <span class="small text-secondary">
+                                        &nbsp;
+                                        &nbsp;
+                                        سرویس
+                                        &nbsp;
+
+                                    </span>
+                                    <a class="mx-2" href="{{projectservice.get_absolute_url}}">
+
+                                        {{projectservice.work_service.title}}
+                                    </a>
+
+
+
+
+
+                                </p>
+
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+
+
+
+
+
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons" aria-hidden="true">local_offer</i> Tracked from Google
+                                Analytics
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-stats">
+                        <div class="card-header card-header-secondary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons" aria-hidden="true">add_task</i>
+                            </div>
+                            <p class="card-category"> {{selected_profile.name}}</p>
+                            <h3 class="card-title">
+                                وظایف پرسنلی غیر فعال
+
+
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            {% for employee in selected_profile.employee_set_m.all %}
+                            {% for projectservice in employee.projectservices.all %}
+                            {% if not projectservice.active %}
+
+                            <div class="mb-2">
+                                <p>
+                                    {{projectservice.get_status_tag|safe}}
+
+
+                                    <span class="small text-secondary">
+                                        &nbsp;
+                                        &nbsp;
+                                        پروژه
+                                        &nbsp;
+
+                                    </span>
+                                    <a class="mx-2" href="{{projectservice.for_project.get_absolute_url}}">
+
+                                        {{projectservice.for_project.title}}
+                                    </a>
+
+                                    <span class="small text-secondary">
+                                        &nbsp;
+                                        &nbsp;
+                                        سرویس
+                                        &nbsp;
+
+                                    </span>
+                                    <a class="mx-2" href="{{projectservice.get_absolute_url}}">
+
+                                        {{projectservice.work_service.title}}
+                                    </a>
+
+
+
+                                </p>
+
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% endfor %}
+
+
+
+
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons" aria-hidden="true">local_offer</i> Tracked from Google
+                                Analytics
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% for employer in selected_profile.employer_set.all %}
+                <div class="tab-pane" id="linkemployer{{employer.pk}}">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons" aria-hidden="true">add_task</i>
+                            </div>
+                            <p class="card-category">کارفرما</p>
+                            <h3 class="card-title">
+                                {{employer.pre_title}}
+                                {{employer.title}}
+
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="">
+                                <a href="{{emloyer.get_absolute_url}}">
+                                    {{employer.title}}
+
+                                </a>
+
+                            </div>
+
+                            <div class="">
+                                <a href="{{emloyer.owner.get_absolute_url}}">
+                                    <img src="{{employer.owner.image}}" class="rounded-circle" width="32" alt="">
+                                    {{employer.owner.name}}
+
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+                {% for supplier in selected_profile.supplier_set.all %}
+                <div class="tab-pane" id="linksupplier{{supplier.pk}}">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons" aria-hidden="true">add_task</i>
+                            </div>
+                            <p class="card-category"> فروشنده</p>
+                            <h3 class="card-title">
+                                {% if supplier.pre_title %}
+                                {{supplier.pre_title}}
+                                  
+                                {% endif %}
+                                {{supplier.title}}
+                                <span class="small">
+
+                                    <span class="badge badge-warning">
+
+                                        {{supplier.active_orders.all|length}}
+                                    </span>
+                                </span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{supplier.get_absolute_url}}">
+                                {{supplier.title}}
+
+                            </a>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-right farsi"></th>
+                                        <th class="text-right farsi">خریدار</th>
+                                        <th class="text-right farsi">فروشنده</th>
+                                        <th class="text-right farsi">مبلغ</th>
+                                        <th class="text-right farsi">تاریخ سفارش</th>
+                                        <th class="text-right farsi">وضعیت</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in supplier.active_orders.all %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{order.get_absolute_url}}">
+
+                                                جزئیات سفارش &nbsp;&nbsp;
+                                                <span v-text="order.id"></span>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{order.customer.get_absolute_url}}">
+                                                <img src="{{order.customer.profile.image}}" width="32"
+                                                    class="rounded-circle" alt="">
+                                                <span>{{order.customer.profile.name}}</span>
+
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{order.supplier.get_absolute_url}}">
+                                                <img src="{{order.supplier.image}}" width="32" class="rounded-circle"
+                                                    alt="">
+                                                <span>{{order.supplier.title}}</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span>{{order.total_to_price}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small" v-text="{{order.persian_order_date}}"></span>
+                                        </td>
+
+                                        <td>
+                                            <span class="badge badge-{{order.get_status_color}}">{{order.status}}</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+                {% for shipper in selected_profile.shipper_set.all %}
+                <div class="tab-pane" id="linkshipper{{shipper.pk}}">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons" aria-hidden="true">add_task</i>
+                            </div>
+                            <p class="card-category"> پیک</p>
+                            <h3 class="card-title">
+                                {{shipper.title}}
+
+
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{shipper.get_absolute_url}}">
+                                {{shipper.title}}
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% for customer in selected_profile.customer_set.all %}
+                <div class="tab-pane" id="linkcustomer{{customer.pk}}">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons" aria-hidden="true">add_task</i>
+                            </div>
+                            <p class="card-category"> خریدار</p>
+                            <h3 class="card-title">
+                                {{customer.title}}
+
+
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+                            <a href="{{customer.get_absolute_url}}">
+                                {{customer.title}}
+
+                            </a>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-right farsi"></th>
+                                        <th class="text-right farsi">خریدار</th>
+                                        <th class="text-right farsi">فروشنده</th>
+                                        <th class="text-right farsi">مبلغ</th>
+                                        <th class="text-right farsi">تاریخ سفارش</th>
+                                        <th class="text-right farsi">وضعیت</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in customer.order_set.all %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{order.get_absolute_url}}">
+
+                                                جزئیات سفارش &nbsp;&nbsp;
+                                                <span v-text="order.id"></span>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{order.customer.get_absolute_url}}">
+                                                <img src="{{order.customer.profile.image}}" width="32"
+                                                    class="rounded-circle" alt="">
+                                                <span>{{order.customer.profile.name}}</span>
+
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{order.supplier.get_absolute_url}}">
+                                                <img src="{{order.supplier.image}}" width="32" class="rounded-circle"
+                                                    alt="">
+                                                <span>{{order.supplier.title}}</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span>{{order.total_to_price}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="small" v-text="{{order.persian_order_date}}"></span>
+                                        </td>
+
+                                        <td>
+                                            <span class="badge badge-{{order.get_status_color}}">{{order.status}}</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block modal %}
+
+{% endblock %}
+
+
+
+{% block script %}
+<script>
+    $("#nav-item-dashboard").addClass("active")
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        md.initDashboardPageCharts();
+
+        md.initVectorMap();
+
+    });
+</script>
+{% endblock %}

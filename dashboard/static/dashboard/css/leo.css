@@ -1,0 +1,72 @@
+.leo-icon{
+    width: 32px;
+    height: 32px;
+    display: inline;
+    margin-left: 1em;
+}
+h1,h2,h3,h4,h5,h6{
+    direction: rtl;
+    /* text-align: right; */
+}
+p{
+    direction: rtl;
+    text-align: right;
+}
+
+
+h1,h2,h3,h4,h5,h6,p,input,a,.farsi,textarea,
+.bmd-label-floating,button,span,*{
+    font-family: "HMFONT";
+}
+
+
+a{
+    direction: rtl;
+}
+[v-cloak] {
+    display: none;
+}
+.swal2-title,.swal2-content{
+    font-family: "HMFONT";
+}
+
+
+.dropdown-menu.dropdown-with-icons .dropdown-item .material-icons {
+
+    margin-left: 12px !important;
+    margin-right: 0px !important;
+}
+
+.bmd-label-floating {
+    right: 0 !important;
+    left: unset !important;
+
+
+}
+
+.form-control-feedback {
+    right: unset !important;
+}
+
+.input-group {
+    direction: rtl;
+}
+
+input {
+    text-align: right;
+    direction: rtl;
+}
+.table{
+    direction: rtl;
+}
+td{
+    text-align: right;
+}
+
+
+.ltr{
+    direction: ltr!important;
+}
+.rtl{
+    direction: rtl!important;
+}

@@ -1,0 +1,42 @@
+<div id="accordion">
+    <div class="card " id="page-short-description-app">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0 text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    توضیح کوتاه
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body farsi text-right">
+                {% if page.short_description %}
+                {{page.short_description|safe}}
+                {% endif %}
+                {% if perms.core.change_basicpage %}
+                <span title="ویرایش" style="cursor: pointer;" class="text-primary" v-if="!show_form" @click="show_form=true">
+                    <i class="material-icons text-primary">
+                        edit
+                    </i>
+                </span>
+
+                <button title="انصراف" class="btn btn-link btn-secondary" v-if="show_form" @click="show_form=false">
+                    <i class="material-icons">
+                        edit
+                    </i>
+                </button>
+                <form @submit.prevent="edit_short_description()" v-if="show_form">
+                    <textarea v-model="short_description" class="farsi form-control" cols="30" rows="10"></textarea>
+                    <button type="submit" class="btn btn-success">
+                        تایید
+                    </button>
+                </form>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+</div>

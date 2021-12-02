@@ -1,0 +1,38 @@
+<div class="card my-3">
+    <div class="card-header">
+        <a :href="page.get_absolute_url">
+
+            <h5 class="card-title text-center farsi" v-text="page.title">
+
+            </h5>
+        </a>
+
+
+    </div>
+
+    <div class="card-body">
+        <div class="media">
+            <img class="mr-3 rounded" width="64" :src="page.thumbnail" alt="">
+            <div class="media-body text-center farsi" v-html="page.short_description">
+               
+                
+            </div>
+        </div>
+
+
+    </div>
+    <div class="card-footer  text-center">
+        <a :href="page.get_absolute_url">
+          <i class="material-icons">
+                       description
+                   </i> 
+        </a>
+       
+        <a target="_blank" :href="page.get_edit_url">
+            <i class="material-icons">
+                         edit
+                     </i> 
+          </a>
+       
+    </div>
+</div>

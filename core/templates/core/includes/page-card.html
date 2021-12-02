@@ -1,0 +1,42 @@
+<div class="card my-3">
+    <div class="card-header">
+        <a href="{{page.get_absolute_url}}">
+
+            <h5 class="card-title text-center farsi">
+                {{page.title}}
+
+            </h5>
+        </a>
+
+
+    </div>
+
+    <div class="card-body">
+        <div class="media">
+            <img class="mr-3 rounded" width="64" src="{{page.thumbnail}}" alt="">
+            <div class="media-body text-center farsi">
+                {% if page.short_description %}
+
+                {{page.short_description|safe}}
+                {% endif %}
+              
+            </div>
+        </div>
+
+
+    </div>
+    <div class="card-footer  text-center">
+        <a href="{{page.get_absolute_url}}">
+          <i class="material-icons">
+                       description
+                   </i> 
+        </a>
+        {% if perms.core.change_basicpage %}
+        <a target="_blank" href="{{project.get_edit_url}}">
+            <i class="material-icons">
+                         edit
+                     </i> 
+          </a>
+        {% endif %}
+    </div>
+</div>

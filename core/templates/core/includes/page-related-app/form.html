@@ -1,0 +1,44 @@
+<span  v-show="!show_add_form" @click="show_add_form=true"  title="افزودن صفحه مرتبط"
+class="material-icons text-primary" style="cursor: pointer;">
+   loupe
+   </span>
+
+<form v-show="show_add_form" @submit.prevent="add_related_page()">
+   <div class="row">
+       <div class="col-md-3">
+           <div class="form-group">
+               <label for="exampleInputEmail1">شناسه صفحه مرتبط</label>
+               <input  min="0" required type="number" v-model="related_page_id" class="farsi form-control"
+                   id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="شناسه صفحه">
+               <small id="emailHelp" class="form-text farsi text-muted">
+                   شناسه صفحه مرتبط را وارد کنید.
+               </small>
+           </div>
+       </div>
+       <div class="col-md-3">
+        <div class="form-check">
+            <input type="checkbox" @input="change_button_text()" v-model="add" class="form-check-input farsi"
+                id="exampleCheck1">
+            <label class="form-check-label pr-3" for="exampleCheck1">افزودن</label>
+        </div>
+       </div>
+       <div class="col-md-3">
+           <div class="form-check">
+               <input type="checkbox" v-model="bidirectional" class="form-check-input farsi"
+                   id="exampleCheck1">
+               <label class="form-check-label pr-3" for="exampleCheck1">ارتباط دو طرفه</label>
+           </div>
+       </div>
+
+       <div class="col-md-3">
+           <button @click="show_add_form=false" class="btn btn-outline-secondary farsi">انصراف</button>
+           <button type="submit" class="btn btn-primary farsi">
+               
+            <span v-text="button_text"></span>
+           </button>
+
+       </div>
+   </div>
+
+
+</form>

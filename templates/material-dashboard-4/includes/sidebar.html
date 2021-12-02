@@ -1,0 +1,93 @@
+<div class="sidebar" data-color="{{sidebar.sidebar_active_color}}" data-background-color="{{sidebar.sidebar_bg_color}}"
+  data-image="https://demos.creative-tim.com/material-dashboard-pro/assets/img/sidebar-1.jpg">
+  <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+  <div class="logo">
+    <a href="{% url 'web:home' %}" class="simple-text logo-mini">
+      <i class="material-icons" aria-hidden="true">language</i>
+    </a>
+    <a href="{% url 'web:home' %}" class="simple-text logo-normal">
+      خانه
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    {% if profile %}
+    <div class="user">
+      <div class="photo">
+        <img src="{{profile.image}}" height="34px" width="34px" />
+      </div>
+      <div class="user-info">
+        <a data-toggle="collapse" href="#collapseExample" class="username">
+          <span>
+            {{profile.name}}
+            <b class="caret"></b>
+          </span>
+        </a>
+        <div class="collapse" id="collapseExample">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{profile.get_absolute_url}}">
+                <span class="sidebar-mini">
+                  <i class="material-icons" aria-hidden="true">account_box</i>
+
+                </span>
+                <span class="sidebar-normal">پروفایل</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{profile.get_reset_password_url}}">
+                <span class="sidebar-mini">
+                  <i class="material-icons" aria-hidden="true">vpn_key</i>
+
+
+                </span>
+                <span class="sidebar-normal">تغییر کلمه عبور</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <!-- <form action="{% url 'authentication:logout' %}" method="POST">
+                  {% csrf_token %}
+
+                </form> -->
+              <!-- <button type="submit" class="nav-link" href="#">
+                  <span class="sidebar-mini">و</span>
+                  <span class="sidebar-normal">خروج</span>
+                </button> -->
+
+              <a class="nav-link" href="{% url 'authentication:logout' %}">
+                <span class="sidebar-mini">
+                  <i class="material-icons" aria-hidden="true">exit_to_app</i>
+
+                </span>
+                <span class="sidebar-normal">خروج</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <ul class="nav">
+      
+    
+
+      {% if sub_app_sidebar %}
+        
+      {% include sub_app_sidebar %}
+      {% endif %}
+
+      {% if sample_sidebar %}
+
+
+      {% include "dashboard/includes/sample-sidebar.html" %}
+
+
+      {% endif %}
+
+    </ul>
+  </div>
+</div>

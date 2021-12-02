@@ -1,0 +1,41 @@
+<div id="accordion">
+    <div class="card mb-3">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0 text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    توضیح کوتاه
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                {% if page.short_description %}
+                {{page.short_description|safe}}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0 text-center">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+                    توضیحات کامل
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                {% if page.description %}
+
+
+
+                {{page.description|safe}}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>

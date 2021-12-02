@@ -1,0 +1,51 @@
+<script>
+    let short_description = `{{page.short_description}}`
+    let url_edit_page_description = "{% url 'core:edit_page_description' %}"
+    let page_short_description_app = new Vue({
+        el: "#page-short-description-app",
+        data: {
+            show_form: false,
+            waiting: false,
+            short_description: short_description
+        },
+        methods: {
+            edit_short_description: function () {
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    page_id: page_id,
+                    short_description: this.short_description,
+                    // description: false,
+                }
+                $.post(url_edit_page_description, payload).done((data) => {
+                    page_description_app.short_description=data.page.short_description
+
+                })
+            },
+
+        }
+    })
+    let description = `{{page.description}}`
+    let page_description_app = new Vue({
+        el: "#page-description-app",
+        data: {
+            show_form: false,
+            waiting: false,
+            description: description
+        },
+        methods: {
+            edit_description: function () {
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    // short_description: false,
+                    page_id: page_id,
+                    description: this.description,
+                }
+                $.post(url_edit_page_description, payload).done((data) => {
+                    page_description_app.description=data.page.description
+                })
+
+            },
+
+        }
+    })
+</script>

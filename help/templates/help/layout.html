@@ -1,0 +1,30 @@
+{% extends "phoenix/layout.html" %}
+{% load static %}
+{% load to_persian_date %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3">
+
+       {% include "help/includes/sidebar.html" %}
+
+
+    </div>
+    <div class="col-md-9">
+
+        {% block main_content %}
+
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+
+{% block help_script %}
+
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,63 @@
+<div class="media aaa">
+    <a :title="page_comment.profile.name" :href="page_comment.profile.get_absolute_url">
+        <img :src="page_comment.profile.image" class="rounded-circle" width="64" alt="">
+    </a>
+    <div class="media-body mr-2">
+        <div class="text-right">
+            <a target="_blank" :href="page_comment.profile.get_absolute_url">
+
+                <span class="farsi text-right text-primary" v-text="page_comment.profile.name"></span>
+            </a>
+            <span class="farsi small text-secondary mr-2 text-right" v-text="page_comment.persian_date_added"></span>
+        </div>
+
+
+        <div class="alert alert-light farsi  text-right fade show" role="alert">
+
+            <div class="farsi text-dark text-right" v-html="page_comment.comment">
+
+            </div>
+            <div>
+
+                <a v-if="page_comment.profile.id=={{profile.id}} && !confirm_delete" style="cursor:pointer"
+                    class="small text-danger mr-auto1 mx-2" @click="confirm_delete=true">
+                    حذف
+    
+                </a>
+    
+                <span v-if="page_comment.profile.id=={{profile.id}} && confirm_delete" style="cursor:pointer"
+                    class="small text-danger mr-auto1 mx-2">
+                    این نظر حذف شود ؟
+    
+                </span>
+    
+                <a v-if="page_comment.profile.id=={{profile.id}} && confirm_delete" style="cursor:pointer"
+                    class="small text-secondary mr-auto1 mx-2" @click="confirm_delete=false">
+                    خیر
+    
+                </a>
+    
+                <a v-if="page_comment.profile.id=={{profile.id}} && confirm_delete" style="cursor:pointer"
+                    class="small text-danger mr-auto1 mx-2" @click="delete_comment(page_comment.id)">
+                    <i class="material-icons">
+                        delete
+                    </i>
+                    حذف کن
+    
+                </a>
+    
+    
+    
+    
+            </div>
+    
+        </div>
+      
+
+
+
+
+
+
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+{% load static %}
+
+<head>
+
+    {% include "material-dashboard-5-rtl/includes/head.html" %}
+    <link rel="stylesheet" href="{% static 'leo/css/font-farsi.css' %}">
+    <link rel="stylesheet" href="{% static 'leo/css/leo.css' %}">
+    <style>
+        button,
+        label,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        option,select,th,td,input,
+        .form-check {
+            direction: rtl !important;
+            text-align: right;
+            font-family: "HMFONT";
+        }
+
+        .nav-item>a {
+            font-family: "HMFONT";
+
+        }
+
+        .nav-link-text {
+            margin-right: 1em !important;
+
+        }
+    </style>
+    {% block head %}
+
+    {% endblock head %}
+</head>
+
+<body class="g-sidenav-show rtl bg-gray-100">
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0"
+            style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% include "material-dashboard-5-rtl/includes/sidenav.html" %}
+
+
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg overflow-x-hidden">
+
+        {% include "material-dashboard-5-rtl/includes/navbar.html" %}
+
+        <div class="container-fluid py-4">
+            {% block content %}
+
+            {% endblock content %}
+
+            {% include "material-dashboard-5-rtl/includes/footer.html" %}
+
+        </div>
+    </main>
+    {% include "material-dashboard-5-rtl/includes/fixed-plugin.html" %}
+
+
+    {% include "material-dashboard-5-rtl/includes/script.html" %}
+    {% block script %}
+
+    {% endblock script %}
+</body>
+
+</html>

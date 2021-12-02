@@ -1,0 +1,74 @@
+<div id="accordion-page-links">
+
+    <div class="card mb-3" id="page-links-app">
+        <div class="card-header" id="headinglinks">
+            <h5 class="text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapselinks" aria-expanded="true"
+                    aria-controls="collapselinks">
+                    لینک ها
+                </button>
+            </h5>
+        </div>
+        <div id="collapselinks" class="collapse {% if page.links.all %}show{% endif %}" aria-labelledby="headinglinks"
+            data-parent="#accordion-page-links">
+
+            <div class="card-body">
+              
+                
+                <div v-for="link in links">
+
+                    <h6>
+                        
+                        <a class="mr-2" target="_blank" :href="link.url">
+                            <i class="fa fa-link " aria-hidden="true"></i>
+<span v-text="link.title">
+
+</span>
+                        </a>
+                        {% if perms.core.change_link %}
+                        <a :href="link.get_edit_url" target="_blank" title="ویرایش" class="mx-2 docs-creator">
+                            <i class="fa fa-edit text-info"></i>
+                        </a>
+                        {% endif %}
+                    </h6>
+                </div>
+            </div>
+            {% if add_page_link_form %}
+            <div class="card-footer">
+
+                <p class="text-right" v-if="!show_add_link">
+
+                    <a style="cursor: pointer;" class="farsi a" @click="show_add_link=true">
+                        <i class="material-icons">
+                            add
+                        </i>
+                        افزودن لینک
+                    </a>
+                </p>
+
+
+                <form v-if="show_add_link" @submit.prevent="add_page_link()">
+                    <div class="row">
+                        <div class="col-8">
+                            <input required type="text" v-model="new_link_title" class="farsi form-control"
+                                placeholder="عنوان لینک جدید">
+                            <input required type="text" v-model="new_link_url" class="farsi form-control"
+                                placeholder="آدرس لینک جدید">
+
+                        </div>
+                        <div class="col-4">
+                            <button class="farsi btn btn-primary btn-block" type="submit">تایید</button>
+                            <button @click="show_add_link=!show_add_link" class="farsi btn btn-secondary btn-block"
+                                type="reset">انصراف</button>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>

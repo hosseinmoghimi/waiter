@@ -1,0 +1,131 @@
+{% extends "dashboard/layout.html" %}
+{% load static %}
+{% block head %}
+
+{% endblock  %}
+
+
+{% block ofBar %}
+<!-- <div id="ofBar">🔥<b>Summer Bundles ON </b> 🔥Grab the hottest deals of the season and <b>save up to 90%</b>! 💣<a href="https://www.creative-tim.com/campaign?ref=lp-campaign" target="_blank" id="btn-bar">View Offers</a><a id="close-bar">×</a></div> -->
+
+{% endblock ofBar %}
+
+{% block content %}
+
+
+
+<div class="header text-center">
+    <h3 class="title farsi text-center">
+        تقویم
+    </h3>
+    <p class="category text-center">
+        مدیریت قرار های کاری و رویداد ها با استفاده از تقویم
+
+        <br>
+        <a target="_blank" href="{% url 'projectmanager:tutorial_add_appointment' %}" rel="nofollow">
+        <i class="material-icons"   aria-hidden="true" >help</i>    
+            راهنما
+        
+        </a>
+        
+
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-10 ml-auto mr-auto">
+        <div class="card card-calendar">
+            <div class="card-body ">
+                <div id="fullCalendar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock  %}
+
+
+
+{% block modal %}
+
+{% endblock  %}
+
+
+
+{% block script %}
+<script>
+     today = new Date();
+    y = today.getFullYear();
+    m = today.getMonth();
+    d = today.getDate();
+
+    let events=[{
+          title: 'قرار ملاقات ۱',
+          start: new Date(y, m, d),
+          className: 'event-rose'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: new Date(y, m, d - 4, 6, 0),
+          allDay: false,
+          className: 'event-rose'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: new Date(y, m, d + 3, 6, 0),
+          allDay: false,
+          className: 'event-rose'
+        },
+        {
+          title: 'Meeting',
+          start: new Date(y, m, d - 1, 10, 30),
+          allDay: false,
+          className: 'event-green'
+        },
+        {
+          title: 'Lunch',
+          start: new Date(y, m, d + 7, 12, 0),
+          end: new Date(y, m, d + 7, 14, 0),
+          allDay: false,
+          className: 'event-red'
+        },
+        {
+          title: 'Md-pro Launch',
+          start: new Date(y, m, d - 2, 12, 0),
+          allDay: true,
+          className: 'event-azure'
+        },
+        {
+          title: 'Birthday Party',
+          start: new Date(y, m, d + 1, 19, 0),
+          end: new Date(y, m, d + 1, 22, 30),
+          allDay: false,
+          className: 'event-azure'
+        },
+        {
+          title: 'Click for Creative Tim',
+          start: new Date(y, m, 21),
+          end: new Date(y, m, 22),
+          url: 'http://www.creative-tim.com/',
+          className: 'event-orange'
+        },
+        {
+          title: 'Click for Google',
+          start: new Date(y, m, 21),
+          end: new Date(y, m, 22),
+          url: 'http://www.creative-tim.com/',
+          className: 'event-orange'
+        }
+      ]
+</script>
+<script src="{% static 'dashboard/leo/calendar.js' %}"></script>
+<script>
+    $("#nav-item-calendar").addClass("active")
+    $(document).ready(function () {
+        initLeoCalendar();
+        // md.initFullCalendar()
+    });
+</script>
+{% endblock  %}

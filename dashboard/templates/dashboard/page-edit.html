@@ -1,0 +1,178 @@
+{% extends "dashboard/layout.html" %}
+{% load static %}
+{% load to_persian_date %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block ofbar %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div id="app">
+    <form @submit.prevent="create_page">
+        <div class="row rtl">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              
+
+                <div class="form-group bmd-form-group">
+                    <label for="exampleInput1e" class="bmd-label-floating">عنوان</label>
+                    <input v-model="page.title" required type="text" class="form-control" id="exampleInput1e">
+                    <!-- <span class="bmd-help">عنوان</span> -->
+                </div>
+
+
+                <div class="form-group bmd-form-group">
+                    <label for="exampleInput1" class="bmd-label-floating">دسته بندی</label>
+                    <input v-model="page.category" type="text" class="form-control" id="exampleInput1">
+                    <!-- <span class="bmd-help">عنوان</span> -->
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+
+
+                <div class="text-right">
+                    <label style="color: #000">
+                        <input type="checkbox" v-model="page.for_home">
+                        <span class="toggle"></span>
+                        نمایش در خانه
+                    </label>
+                </div>
+
+
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-success">
+                    افزودن
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block modal %}
+
+{% endblock %}
+
+
+
+{% block script %}
+{% if DEBUG %}
+<script src="{% static 'vendor/js/vue.js' %}"></script>
+{% else %}
+<script src="{% static 'vendor/js/vue.min.js' %}"></script>
+{% endif %}
+<script>
+    let page_id = "{{page_id}}"
+    let page = { title: "", id: 0 ,for_home:false}
+    let child_class = "{{child_class}}"
+    let app_name = "{{app_name}}"
+    if (page_id != 0) { page = JSON.parse(`{{page_s|escapejs}}`) }
+
+    let url_edit_page = "{% url 'dashboard:edit_page' %}"
+    let app = new Vue({
+        el: "#app",
+        data: {
+            page: page,
+        },
+        methods: {
+            edit_page: function () {
+                
+                let payload = {
+                    for_home: app.page.for_home,
+                    page_id: app.page.id,
+                    title: app.page.title,
+                    category: app.page.category,
+                    app_name: app_name,
+                    child_class: child_class,
+                    csrfmiddlewaretoken: csrfmiddlewaretoken
+                }
+                
+                var posting = $.post(url_edit_page, payload);
+
+                // Put the results in a div
+                posting.done(function (data) {
+                    if (data.result === 'SUCCEED') {
+
+                        message =
+                            `
+                        <p>
+                        با موفقیت ثبت گردید.
+                        </p>
+                        <p>
+                            <a href="${data.page.get_absolute_url}">نمایش جزئیات</a>            
+                            </p>
+                        `
+
+                        showNotification('bottom', 'left', 'chat', 'success', message)
+                        app.page = data.page
+
+                    }
+                    else {
+                    }
+                })
+
+
+            },
+            create_page: function () {
+          
+                let payload = {
+                    for_home: app.page.for_home,
+                    page_id: 0,
+                    title: app.page.title,
+                    category: app.page.category,
+                    app_name: app_name,
+                    child_class: child_class,
+                    csrfmiddlewaretoken: csrfmiddlewaretoken
+                }
+                
+                var posting = $.post(url_edit_page, payload);
+
+                // Put the results in a div
+                posting.done(function (data) {
+                    if (data.result === 'SUCCEED') {
+
+                        message =
+                            `
+                        <p>
+                        با موفقیت اضافه گردید.
+                        </p>
+                        <p>
+                            <a href="${data.page.get_absolute_url}">نمایش جزئیات</a>            
+                            </p>
+                        `
+
+                        showNotification('bottom', 'left', 'chat', 'success', message)
+                        
+                        
+
+                    }
+                    else {
+                        
+                    }
+                })
+
+
+            },
+        },
+    })
+</script>
+{% endblock %}

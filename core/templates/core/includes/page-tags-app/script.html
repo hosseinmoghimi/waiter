@@ -1,0 +1,48 @@
+<script>
+    let tags=JSON.parse("{{page_tags_s|escapejs}}")
+    let page_tags_app = new Vue({
+        el: "#page-tags-app",
+        data: {
+            tag_title: "",
+            tags: tags,
+            waiting:false,
+            
+        },
+        methods: {
+            remove_tag:function (tag_id) {
+                page_tags_app.waiting=true
+                let url = "{% url 'core:remove_page_tag' %}"
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    page_id: page_id,
+                    tag_id: tag_id,
+                }
+                $.post(url, payload).done((data) => {
+                    
+                page_tags_app.waiting=false
+                    if (data.result === 'SUCCEED'){
+                        page_tags_app.tag_title=""
+                        page_tags_app.tags=page_tags_app.tags.filter(tag=>tag.id!=tag_id)
+                    }
+                })
+            },
+            add_page_tag: function () {
+                page_tags_app.waiting=true
+                let url = "{% url 'core:add_page_tag' %}"
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    page_id: page_id,
+                    title: page_tags_app.tag_title,
+                }
+                $.post(url, payload).done((data) => {
+                    
+                page_tags_app.waiting=false
+                    if (data.result === 'SUCCEED'){
+                        page_tags_app.tag_title=""
+                        page_tags_app.tags.push(data.tag)
+                    }
+                })
+            },
+        }
+    })
+</script>

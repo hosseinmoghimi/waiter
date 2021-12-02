@@ -1,0 +1,275 @@
+
+      <!-- pages -->
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#pagesExamples" aria-expanded="true">
+          <i class="material-icons" aria-hidden="true">image</i>
+          <p>صفحات
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="pagesExamples">
+          <ul class="nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'dashboard:pages_chart' %}">
+
+                <span class="sidebar-mini">
+                  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                </span>
+
+                <span class="sidebar-normal">همه صفحات</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="https://demos.creative-tim.com/material-dashboard-pro/examples/pages/rtl.html">
+                <span class="sidebar-mini">صو</span>
+                <span class="sidebar-normal">دعم رتل</span>
+              </a>
+            </li>
+
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'authentication:login' %}">
+                <span class="sidebar-mini">و</span>
+                <span class="sidebar-normal">ورود</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link"
+                href="https://demos.creative-tim.com/material-dashboard-pro/examples/pages/register.html">
+                <span class="sidebar-mini">صع</span>
+                <span class="sidebar-normal">سجل الصفحة</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="https://demos.creative-tim.com/material-dashboard-pro/examples/pages/lock.html">
+                <span class="sidebar-mini">هذاع</span>
+                <span class="sidebar-normal">قفل صفحة الشاشة</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="https://demos.creative-tim.com/material-dashboard-pro/examples/pages/user.html">
+                <span class="sidebar-mini">شع</span>
+                <span class="sidebar-normal">ملف تعريفي للمستخدم</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link"
+                href="https://demos.creative-tim.com/material-dashboard-pro/examples/pages/error.html">
+                <span class="sidebar-mini">البريد</span>
+                <span class="sidebar-normal">صفحة الخطأم</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <!-- transport -->
+      <li class="nav-item ">
+        <a class="nav-link" data-toggle="collapse" href="#transport-collapse">
+          <i class="material-icons" aria-hidden="true">apps</i>
+          <p>حمل و نقل
+            <b class="caret"></b>
+          </p>
+        </a>
+
+        <div class="collapse" id="transport-collapse">
+          <ul class="nav">
+            <!-- <li class="nav-item ">
+              <a class="nav-link" href="{1% url 'transport:home' %}">
+                <span class="sidebar-mini">س</span>
+                <span class="sidebar-normal">سرویس ها
+
+                </span>
+              </a>
+
+            </li> -->
+            <li class="nav-item " id="nav-item-buttons">
+              <a class="nav-link" href="{% url 'dashboard:components_buttons' %}">
+                <span class="sidebar-mini">د</span>
+                <span class="sidebar-normal">رفت و آمد</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+      </li>
+
+
+      <!-- utility -->
+      <li class="nav-item ">
+        <a class="nav-link" data-toggle="collapse" href="#utility-collapse">
+          <i class="material-icons" aria-hidden="true">apps</i>
+          <p>ابزار های کاربردی
+            <b class="caret"></b>
+          </p>
+        </a>
+
+        <div class="collapse" id="utility-collapse">
+          <ul class="nav">
+            <li class="nav-item " id="nav-item-utility-date-convertion">
+              <a class="nav-link" href="{% url 'utility:time_convertion' %}">
+                <span class="sidebar-mini">س</span>
+                <span class="sidebar-normal">تبدیل تاریخ
+
+                </span>
+              </a>
+
+            </li>
+
+            <li class="nav-item " id="nav-item-utility-send-email">
+              <a class="nav-link" href="{% url 'dashboard:send_email' %}">
+                <span class="sidebar-mini">س</span>
+                <span class="sidebar-normal">ارسال ایمیل
+
+                </span>
+              </a>
+
+            </li>
+            <li class="nav-item " id="nav-item-buttons">
+              <a class="nav-link" href="{% url 'dashboard:components_buttons' %}">
+                <span class="sidebar-mini">د</span>
+                <span class="sidebar-normal">رفت و آمد</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+      </li>
+
+      <!-- component -->
+      <li class="nav-item ">
+        <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+          <i class="material-icons" aria-hidden="true">apps</i>
+          <p>اجزای صفحه
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="componentsExamples">
+          <ul class="nav">
+            <li class="nav-item " id="nav-item-tables-regular">
+              <a class="nav-link" href="{% url 'dashboard:tables_regular' %}">
+                <span class="sidebar-mini">صر</span>
+                <span class="sidebar-normal">جداول معمولی</span>
+              </a>
+            </li>
+
+            <li class="nav-item " id="nav-item-timeline">
+              <a class="nav-link" href="{% url 'dashboard:pages_timeline' %}">
+                <span class="sidebar-mini">
+                  <i class="material-icons" aria-hidden="true">timeline</i>
+
+                </span>
+                <span class="sidebar-normal">خط زمانی</span>
+              </a>
+            </li>
+
+
+            <li class="nav-item " id="nav-item-buttons">
+              <a class="nav-link" href="{% url 'dashboard:components_buttons' %}">
+                <span class="sidebar-mini">د</span>
+                <span class="sidebar-normal">دکمه ها</span>
+              </a>
+            </li>
+            <li class="nav-item " id="nav-item-buttons">
+              <a class="nav-link" target="_blank" href="https://material.io/resources/icons/?style=baseline">
+                <span class="sidebar-mini">د</span>
+                <span class="sidebar-normal">آیکون ها</span>
+              </a>
+            </li>
+            <li class="nav-item " id="nav-item-panels">
+              <a class="nav-link" href="{% url 'dashboard:components_panels' %}">
+                <span class="sidebar-mini">ع</span>
+                <span class="sidebar-normal">پنل ها</span>
+              </a>
+            </li>
+            <li class="nav-item " id="nav-item-alerts">
+              <a class="nav-link" href="{% url 'dashboard:components_alerts' %}">
+                <span class="sidebar-mini">پ</span>
+                <span class="sidebar-normal">هشدار</span>
+              </a>
+            </li>
+            <li class="nav-item " id="nav-item-notifications">
+              <a class="nav-link" href="{% url 'dashboard:components_notifications' %}">
+                <span class="sidebar-mini">ن</span>
+                <span class="sidebar-normal">اعلان ها</span>
+              </a>
+            </li>
+
+
+
+
+            <!-- widgets -->
+            <li class="nav-item " id="nav-item-widgets">
+              <a class="nav-link" href="{% url 'dashboard:widgets' %}">
+
+                <span class="sidebar-mini">
+                  <i class="material-icons" aria-hidden="true">widgets</i>
+                </span>
+                <span class="sidebar-normal">ابزارک ها</span>
+
+              </a>
+            </li>
+
+
+            <li class="nav-item " id="nav-item-charts">
+              <a class="nav-link" href="{% url 'dashboard:charts' %}">
+                <i class="material-icons" aria-hidden="true">timeline</i>
+                <p>نمودار</p>
+              </a>
+            </li>
+            <li class="nav-item " id="nav-item-calendar">
+              <a class="nav-link" href="{% url 'dashboard:calendar' %}">
+                <i class="material-icons" aria-hidden="true">date_range</i>
+                <p>تقویم</p>
+              </a>
+            </li>
+
+
+
+
+          </ul>
+        </div>
+      </li>
+
+      <!-- forms -->
+      <li class="nav-item ">
+        <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+          <i class="material-icons" aria-hidden="true">content_paste</i>
+          <p>فرم ها
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="formsExamples">
+          <ul class="nav">
+            <li class="nav-item ">
+              <a class="nav-link"
+                href="https://demos.creative-tim.com/material-dashboard-pro/examples/forms/regular.html">
+                <span class="sidebar-mini">صو</span>
+                <span class="sidebar-normal">أشكال منتظمة</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link"
+                href="https://demos.creative-tim.com/material-dashboard-pro/examples/forms/extended.html">
+                <span class="sidebar-mini">هوو</span>
+                <span class="sidebar-normal">أشكال موسعة</span>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link"
+                href="https://demos.creative-tim.com/material-dashboard-pro/examples/forms/validation.html">
+                <span class="sidebar-mini">تو</span>
+                <span class="sidebar-normal">نماذج التحقق</span>
+              </a>
+            </li>
+            <li class="nav-item " id="nav-item-wizard">
+              <a class="nav-link" href="{% url 'dashboard:wizard' %}">
+                <span class="sidebar-mini">ث</span>
+                <span class="sidebar-normal">ثبت نام</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+

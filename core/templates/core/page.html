@@ -1,0 +1,75 @@
+{% extends "core/layout.html" %}
+{% load static %}
+{% block content %}
+<div id="page-app">
+
+
+    <div class="farsi">
+
+        {{page.get_breadcrumb|safe}}
+    </div>
+    <h3>
+        {{page.title}}
+    </h3>
+   
+
+    <h6 class="mt-4 mb-2">
+
+        زیر صفحه ها :
+    </h6>
+    <div class="row ">
+
+        {% for page in childs %}
+
+        <div class="col-md-4">
+            {% include "core/includes/page-card.html" %}
+        </div>
+        {% endfor %}
+
+        <div class="col-md-4" v-for="page in childs">
+            {% include "core/includes/page-card-js.html" %}
+        </div>
+        {% if add_child_form %}
+        <div>
+    
+            <form @submit.prevent="add_child()">
+                <input required type="text" v-model="new_child_title" class="farsi form-control" placeholder="فرزند جدید">
+                <button class="btn btn-primary" type="submit">تایید</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'vendor/js/vue.min.js' %}"></script>
+<script>
+    let page_id = parseInt("{{page.id}}")
+    let page_app = new Vue({
+        el: "#page-app",
+        data: {
+            new_child_title: "",
+            childs:[],
+        },
+        methods: {
+            add_child: function () {
+                let url = "{% url 'core:add_page' %}"
+                let payload = {
+                    csrfmiddlewaretoken: csrfmiddlewaretoken,
+                    parent_id: page_id,
+                    title: this.new_child_title,
+                }
+                let posting = $.post(url, payload)
+                posting.done(function(data){
+                    //console.log(data)
+                    page_app.childs.push(data.page)
+                    page_app.new_child_title=""
+                })
+            },
+        }
+    })
+</script>
+{% endblock %}

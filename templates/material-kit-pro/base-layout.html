@@ -1,0 +1,60 @@
+<!--
+ =========================================================
+ Material Kit PRO - v2.2.0
+ =========================================================
+
+ Product Page: https://www.creative-tim.com/product/material-kit-pro
+ Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+ Coded by Creative Tim
+
+ =========================================================
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "material-kit-pro/includes/head.html" %}
+
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+
+<body class="{{body_class}} sidebar-collapse">
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% include "material-kit-pro/includes/nav-bar.html" %}
+
+    <div class="section-space2"></div>
+    {% block page_header %}
+
+    {% endblock %}
+    {% block content %}
+    <div class="main {{main_class}}">
+        
+    </div>
+        {% endblock %}
+
+        
+
+    
+
+    {% include "material-kit-pro/includes/footer.html" %}
+
+    {% include "material-kit-pro/includes/script.html" %}
+    {% include "material-kit-pro/includes/vertical-nav.html" %}
+
+    {% block script %}
+
+    {% endblock %}
+</body>
+
+</html>

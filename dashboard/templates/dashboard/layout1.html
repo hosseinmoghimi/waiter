@@ -1,0 +1,165 @@
+<!--
+=========================================================
+Material Dashboard PRO - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard-pro
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  {% include "dashboard/includes/head.html" %}
+  <style>
+    /* 
+.card {
+      box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+    box-shadow: 8px 8px 4px 1px rgb(0 0 0 / 15%) !important;
+} */
+
+    .fixed-plugin {
+      /* left: 0px!important; */
+      /* right: unset!important; */
+      top: 520px !important;
+      /* border-radius: 0 8px 8px 0 !important; */
+    }
+
+    .fixed-plugin-profile {
+      width: 100px !important;
+      height: 100px !important;
+    }
+
+    label {
+      color: #000;
+    }
+  </style>
+
+
+  <!-- End Google Tag Manager -->
+
+  <link href="{% static 'leo/css/leo.css' %}" rel="stylesheet" />
+
+  <style>
+    .bmd-label-floating {
+      right: 0 !important;
+      left: unset !important;
+
+
+    }
+
+    .card [class*=card-header-] .card-icon,
+    .card [class*=card-header-] .card-text {
+      border-radius: 3px;
+      background-color: #999;
+      padding: 15px;
+      margin-top: -20px;
+      margin-left: 15px;
+      float: right;
+    }
+
+    td,
+    th {
+      text-align: right;
+    }
+
+    .modal-dialog .modal-header .close {
+      position: absolute;
+      top: 15px;
+      left: 0px !important;
+      right: unset !important;
+    }
+
+    .main-panel>.content {
+      margin-top: 70px;
+      padding: 30px 15px;
+      min-height: calc(100vh - 158px);
+    }
+
+    .card-title,
+    th,
+    td {
+      text-align: right;
+      font-family: "HMFONT";
+    }
+  </style>
+  {% block head %}
+
+  {% endblock %}
+  {% block style %}
+
+  {% endblock %}
+
+</head>
+
+<body class="rtl">
+
+  {% block ofBar %}
+
+  {% endblock ofBar %}
+
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="wrapper ">
+
+    {% include "dashboard/includes/sidebar.html" %}
+
+
+    <div class="main-panel">
+      <!-- Navbar -->
+
+      {% include "dashboard/includes/navbar.html" %}
+
+
+      <!-- End Navbar -->
+
+      <div class="content">
+
+        <div class="container-fluid">
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+
+      {% include "dashboard/includes/footer.html" %}
+
+
+
+      {% block modal %}
+
+      {% endblock %}
+
+    </div>
+  </div>
+
+
+  {% include "dashboard/includes/fixed-plugin.html" %}
+
+
+  {% csrf_token %}
+
+{% include "dashboard/includes/layout-scripts.html" %}
+
+
+
+  {% if PUSHER_IS_ENABLE %}
+  {% include "dashboard/includes/pusher.html" %}
+  {% endif %}
+
+
+
+  {% block script %}
+
+  {% endblock %}
+
+</body>
+
+</html>

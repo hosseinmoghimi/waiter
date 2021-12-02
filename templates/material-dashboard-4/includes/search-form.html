@@ -1,0 +1,15 @@
+{% if search_form %}
+<form class="navbar-form ml-3 mr-3" action="{% url 'dashboard:search' %}" method="POST">
+  <div class="input-group no-border">
+    {% csrf_token %}
+
+    <input type="hidden" value="{{APP_NAME}}" name="app_name">
+    <input type="text" value="" class="form-control" name="search_for" required placeholder="جستجو ...">
+    <button type="submit" class="btn btn-white btn-round btn-just-icon"
+      style="right: unset!important;left:-15px!important;">
+      <i class="material-icons" aria-hidden="true">search</i>
+      <div class="ripple-container"></div>
+    </button>
+  </div>
+</form>
+{% endif %}

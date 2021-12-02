@@ -1,0 +1,52 @@
+<ul class="float-right rtl">
+
+    <li>
+        <a href="{% url 'web:home' %}">
+            خانه
+        </a>
+    </li>
+
+    <li>
+        <a href="{% url 'web:blogs' %}">
+            مقالات
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'web:ourworks' %}">
+            پروژه های ما
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'web:about' %}">
+            درباره ما
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'web:contact' %}">
+            تماس با ما
+        </a>
+    </li>
+    <li>
+        <span class="mx-2">
+<span class="text-light">
+    {{visitor_counter}}
+
+</span>
+            <small class="text-secondary">
+                بازدید
+
+            </small>
+        </span>
+    </li>
+</ul>
+<div class="copyright rtl float-left text-left">
+    <span class="farsi rtl">
+        توسعه و اجرا :
+    </span>
+
+    <a href="https://www.linkedin.com/in/hossein-moghimi-4597b973/" class="btn btn-linkedin">
+        <i class="fa fa-linkedin-square"></i> صفرویک
+        <div class="ripple-container"></div>
+    </a>
+
+</div>

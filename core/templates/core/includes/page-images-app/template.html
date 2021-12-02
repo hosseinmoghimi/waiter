@@ -1,0 +1,94 @@
+{% load static %}
+<div id="accordion-page-images">
+
+    <div class="card" id="page-images-app">
+        <div class="card-header" id="headingpageimages">
+            <h6 class="card-title text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesepageimages"
+                    aria-expanded="true" aria-controls="collapsesepageimages">
+                    تصاویر
+                </button>
+            </h6>
+        </div>
+
+        <div id="collapsesepageimages" class="collapse {% if page.pageimage_set.all %}show{% endif %}"
+            aria-labelledby="headingpageimages" data-parent="#accordion-page-images">
+            <div class="card-body">
+                <div class="row">
+                
+
+
+
+
+
+                    <div class="col-md-4 farsi text-center" v-for="image in images">
+
+
+                        <h6 class="text-center mt-4 mb-2">
+                            <span v-text="image.title"></span>
+                            {% if perms.core.change_image %}
+
+                            <a title="edit" target="_blank" :href="image.get_edit_url">
+                                <i class="material-icons">
+                                    edit
+                                </i>
+                            </a>
+                            {% endif %}
+
+                        </h6>
+                        <a target="_blank" :href="image.image">
+
+                            <img :src="image.thumbnail" width="100%" :alt="image.title"
+                                class="rounded">
+                        </a>
+
+
+                    </div>
+
+
+
+                </div>
+                {% if add_page_image_form %}
+                <p>
+
+                    <button @click="show_add_page_image_form=true" v-if="!show_add_page_image_form"
+                        class="btn btn-success mt-4">
+                        افزودن تصویر
+                    </button>
+                </p>
+
+                <form id="add-page-image-form" v-if="show_add_page_image_form" @submit.prevent="add_page_image()"
+                    enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-8">
+                            <input required type="text" v-model="add_page_image_form_title" class="farsi form-control"
+                                placeholder="عنوان تصویر جدید">
+
+
+                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                <span class="fileinput-new farsi">انتخاب تصویر</span>
+
+                                <input type="file" v-on:change="document_file=true" name="">
+                                <div class="ripple-container"></div>
+                            </span>
+
+
+                        </div>
+                        <div class="col-4">
+                            <img src="{% static 'leo/img/loading.gif' %}" width="32" v-if="waiting" alt="">
+
+                            <button class="farsi btn btn-primary btn-block" type="submit">تایید</button>
+                            <button @click="show_add_page_image_form=false" class="farsi btn btn-secondary btn-block"
+                                type="reset">انصراف</button>
+
+
+                        </div>
+                    </div>
+
+                </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>

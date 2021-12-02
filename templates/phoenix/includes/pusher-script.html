@@ -1,0 +1,34 @@
+
+  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+      
+    let member = JSON.parse("{{member_s|escapejs}}")
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher(member.channel.key, {
+        cluster: member.channel.cluster
+    });
+
+    var channel = pusher.subscribe(member.channel.name);
+    channel.bind(member.event, function (data) {
+        let message = JSON.stringify(data)
+        message = JSON.parse(message)
+        notifications_app.notifications.push(message);
+    });
+
+
+	let notifications=JSON.parse(`{{notifications_s|escapejs}}`)
+    let notifications_app=new Vue({
+        el:"#notifications-app",
+        data:{
+            notifications:notifications,
+        },
+        methods:{
+
+        }
+    })
+	
+	
+  </script> 

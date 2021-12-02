@@ -1,0 +1,86 @@
+{% load static %}
+<div id="accordion-page-documents">
+
+    <div id="page-documents-app" class="card mb-3">
+        <div class="card-header" id="headingdocuments">
+            <h5 class="text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapsedocuments"
+                    aria-expanded="true" aria-controls="collapsedocuments">
+                    دانلود ها
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapsedocuments" class="collapse {% if page.documents.all %}show{% endif %}"
+            aria-labelledby="headingdocuments" data-parent="#accordion-page-documents">
+
+            <div class="card-body">
+
+                <div v-for="document in documents">
+
+                    <h6>
+                        <a class="mr-2" target="_blank" :href="document.get_download_url">
+                            <i class="fa fa-download text-success" aria-hidden="true"></i>
+                            <span v-text="document.title"></span>
+                        </a>
+                        {% if perms.core.change_document %}
+                        <a :href="document.get_edit_url" target="_blank" title="ویرایش" class="mx-2 docs-creator">
+                            <i class="fa fa-edit text-info" ></i>
+                        </a>
+                        {% endif %} 
+                         {% if perms.core.delete_document %}
+                        <a :href="document.get_delete_url" target="_blank" title="حذف" class="mx-2 docs-creator">
+                            <i class="fa fa-trash text-danger" ></i>
+                        </a>
+                        {% endif %}
+                    </h6>
+                </div>
+            </div>
+            {% if add_page_document_form %}
+            <div class="card-footer">
+
+                <p class="text-right" v-if="!show_add_document_form">
+
+                    <a style="cursor: pointer;" class="farsi a" @click="show_add_document_form=true">
+                        <i class="material-icons">
+                            add
+                        </i>
+                        افزودن دانلود جدید
+                    </a>
+                </p>
+
+
+                <form id="add-document-form" v-if="show_add_document_form" @submit.prevent="add_page_document()"
+                    enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-8">
+                            <input required type="text" v-model="new_document_title" class="farsi form-control"
+                                placeholder="عنوان دانلود جدید">
+
+
+                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                <span class="fileinput-new farsi">انتخاب فایل</span>
+
+                                <input type="file" v-on:change="document_file=true" name="">
+                                <div class="ripple-container"></div>
+                            </span>
+
+
+                        </div>
+                        <div class="col-4">
+                            <img src="{% static 'leo/img/loading.gif' %}" width="32" v-if="waiting" alt="">
+
+                            <button class="farsi btn btn-primary btn-block" v-if="!waiting" type="submit">تایید</button>
+                            <button @click="show_add_document_form=false" v-if="!waiting"
+                                class="farsi btn btn-secondary btn-block" type="reset">انصراف</button>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{% if search_form %}
+<form class="d-inline" action="{% url 'web:search' %}" method="POST">
+    <input type="hidden" name="app_name" value="{{APP_NAME}}">
+    {% csrf_token %}
+    <input name="search_for" type="text" style="color:inherit" class="mr-3 form-control d-inline"
+        placeholder="جستجو">
+
+</form>
+{% endif %}

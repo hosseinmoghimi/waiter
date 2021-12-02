@@ -1,0 +1,81 @@
+{% load static %}
+{% if DEBUG %}
+<script>
+
+    var logToConsole = true
+</script>
+{% else %}
+<script>
+
+    var logToConsole = false
+</script>
+{% endif %}
+{% if user.is_authenticated%}
+<script src="{% static 'pusher/pusher.min.js'%}"></script>
+<script>
+    if (typeof notifications === 'undefined')
+        notifications = []
+
+</script>
+<script>
+    notifications = JSON.parse(`{{notifications_s|escapejs}}`)
+    notifications_count = JSON.parse(`{{notifications_count|escapejs}}`)
+
+
+    // Vue application
+
+
+    my_channel_events = JSON.parse(`{{my_channel_events_s|escapejs}}`)
+
+
+    my_channel_events.forEach(my_channel_event => {
+
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = logToConsole
+
+        // var pusher = new Pusher(my_channel_event.channel.key, {
+        //     cluster: my_channel_event.channel.cluster
+        // })
+        //     .subscribe(my_channel_event.channel.channel_name)
+        //     .bind(my_channel_event.event_name, function (data) {
+
+        //         let url = "{% url 'dashboard:my_notifications' %}"
+        //         $.get(url, function (data) {
+        //             app_notifications.notifications = JSON.parse(data.my_notifications_s)
+
+        //         });
+
+
+        //         // showNotification('bottom', 'center', 'chat', 'info', data.message)
+        //         let message = `
+        //                  <div>
+        //                     <h4 class="text-right">${data.message.title}</h4>
+        //                     <div class="text-right">${data.message.body}</div>
+        //                 </div>                       
+        //             `
+
+
+        //         showNotification('bottom', 'center', data.message.icon, data.message.color,
+        //             message)
+
+
+
+        //         try {
+        //             Android.showToast(data.message);
+        //         } catch (error) {
+        //             if (Pusher.logToConsole)
+        //                 console.error(error);
+        //             // expected output: ReferenceError: nonExistentFunction is not defined
+        //             // Note - error messages will vary depending on browser
+        //         }
+
+        //     });
+
+    });
+
+</script>
+
+
+
+{% endif %}

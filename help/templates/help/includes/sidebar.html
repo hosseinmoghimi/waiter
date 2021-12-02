@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header card-header-icon">
+
+        <h4 class="title">
+            <i class="material-icons" aria-hidden="true">help</i>
+
+            راهنما
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        <ul class="nav flex-column" style="padding-right:10px">
+
+            {% if sidebar_index %}
+            {% for sidebar_link in sidebar_index %}
+            <li class="nav-item">
+                <a class="nav-link farsi" href="{% url 'help:app' app_name=sidebar_link.name %}">
+                    {{sidebar_link.title}}
+                </a>
+            </li>
+            {% endfor %}
+            {% endif %}
+            {% if sidebar_links %}
+
+            {% for sidebar_link in sidebar_links %}
+            <li class="nav-item">
+                <a class="nav-link farsi"
+                    href="{% url 'help:help' app_name=sidebar_link.app_name template=sidebar_link.template %}">
+                    {{sidebar_link.title}}
+
+                </a>
+                {% if sidebar_link.childs %}
+                <ul class="nav flex-column" style="padding-right:2em">
+
+
+                    {% for sidebar_link in sidebar_link.childs %}
+                    <li class="nav-item">
+                        <a class="nav-link farsi"
+                            href="{% url 'help:help' app_name=sidebar_link.app_name template=sidebar_link.template %}">
+                            {{sidebar_link.title}}
+
+                        </a>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                {% endif %}
+            </li>
+            {% endfor %}
+            {% endif %}
+
+            {% block sidebar_content %}
+
+            {% endblock %}
+        </ul>
+    </div>
+</div>

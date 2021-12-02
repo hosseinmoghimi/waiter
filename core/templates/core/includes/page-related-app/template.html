@@ -1,0 +1,45 @@
+<div id="accordion-relates-pages">
+
+    <div class="card" id="related-pages-app">
+        <div class="card-header" id="headingRelatedPages">
+            <h5 class="text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseRelatedPages"
+                    aria-expanded="true" aria-controls="collapseRelatedPages">
+                    صفحات مرتبط
+                </button>
+            </h5>
+
+
+        </div>
+
+        <div id="collapseRelatedPages" class="collapse" aria-labelledby="headingRelatedPages"
+         data-parent="#accordion-relates-pages">
+
+
+            <div class="card-body">
+                <div class="row">
+             
+                    <div class="col-md-4 mb-3" v-for="related_page in related_pages">
+
+                        <h6 class="text-muted text-center">
+                            <span v-text="related_page.class_name_farsi"></span>
+                        </h6>
+                        <a :href="related_page.get_absolute_url">
+
+                            <h5 class="text-center">
+                                <span v-text="related_page.title"></span>
+                            </h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% if add_related_page_form %}
+            <div class="card-footer">
+             {% include "core/includes/page-related-app/form.html" %}
+
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>

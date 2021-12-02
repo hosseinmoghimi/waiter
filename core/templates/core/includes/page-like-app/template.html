@@ -1,0 +1,17 @@
+<span id="page-like-app" class="text-right" v-cloak>
+    <span @click="toggle_like()" class="" style="cursor: pointer;" :title="likes_count+'نفر این صفحه را پسندیده اند.'">
+
+       
+<!-- 
+        <i v-if="!my_like"  class="fa fa-thumbs-up text-secondary " aria-hidden="true"></i>
+
+
+        <i  v-if="my_like" class="fa fa-thumbs-up text-danger " aria-hidden="true"></i>
+     -->
+        <i v-if="!my_like"  class="fa fa-star-o text-secondary " aria-hidden="true"></i>
+
+        <i  v-if="my_like" class="fa fa-star " style="color:#f5c103" aria-hidden="true"></i>
+    </span>
+     
+
+</span>

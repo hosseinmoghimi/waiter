@@ -1,0 +1,147 @@
+<div class="card card-stats">
+    <div class="card-header   card-header-icon">
+        <div class="card-icon" style="background: none!important;margin-top:-70px!important;">
+            <div class="profile text-center" style="">
+
+                <div class="avatar text-center">
+                    <img width="128" src="{{selected_profile.image}}" alt="Circle Image"
+                        class="img-raised rounded-circle img-fluid">
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+    <div class="card-body">
+        <div class="card-category">پروفایل های فعال</div>
+        <h3 class="card-title mb-4">{{selected_profile.name}}</h3>
+
+        {% for employee in selected_profile.employee_set_m.all %}
+        <div class="mb-2">
+            <i class="fa fa-user mx-2"></i>
+            <span class="text-secondary  mx-2">
+
+                {{employee.role}}
+            </span>
+
+            <a href="{{employee.work_unit.get_absolute_url}}" class=" mx-2">
+                {{employee.work_unit.title}}
+
+            </a>   
+            &nbsp;
+            &nbsp;
+            <a href="{{employee.work_unit.employer.get_absolute_url}}" class=" mx-2">
+                {{employee.work_unit.employer.title}}
+
+            </a>
+
+
+        </div>
+        {% endfor %}
+
+
+        {% for employer in selected_profile.employer_set.all %}
+        <div class="mb-2">
+            <i class="fa fa-user mx-2"></i>
+            <span class="text-secondary  mx-2">
+
+               موسسه
+            </span>
+
+            <a href="{{employer.get_absolute_url}}" class=" mx-2">
+                {{employer.title}}
+
+            </a>   
+            &nbsp;
+            &nbsp;
+            <a href="{{employee.work_unit.employer.get_absolute_url}}" class=" mx-2">
+                {{employee.work_unit.employer.title}}
+
+            </a>
+
+
+        </div>
+        {% endfor %}
+
+
+        {% for supplier in selected_profile.supplier_set.all %}
+        <div class="mb-2">
+            <i class="fa fa-user mx-2"></i>
+            <span class="text-secondary  mx-2">
+
+              فروشگاه
+            </span>
+
+            <a href="{{supplier.get_absolute_url}}" class=" mx-2">
+                {{supplier.title}}
+
+            </a>
+            {% if supplier.is_verified %}
+              
+        فعال
+            {% else %}
+            غیر فعال
+            {% endif %}
+        </div>
+        {% endfor %}
+
+
+        {% for shipper in selected_profile.shipper_set.all %}
+        <div class="mb-2">
+            <i class="fa fa-user mx-2"></i>
+            <span class="text-secondary  mx-2">
+
+              پیک
+            </span>
+
+            <a href="{{shipper.get_absolute_url}}" class=" mx-2">
+                {{shipper.title}}
+
+            </a>
+            {% if shipper.is_verified %}
+              
+        فعال
+            {% else %}
+            غیر فعال
+            {% endif %}
+        </div>
+        {% endfor %}
+
+
+
+        {% for customer in selected_profile.customer_set.all %}
+        <div class="mb-2">
+            <i class="fa fa-user mx-2"></i>
+            <span class="text-secondary  mx-2">
+
+              خریدار
+            </span>
+
+            <a href="{{customer.get_absolute_url}}" class=" mx-2">
+                {{customer.title}}
+
+            </a>
+            {% if customer.is_verified %}
+              
+        فعال
+            {% else %}
+            غیر فعال
+            {% endif %}
+        </div>
+        {% endfor %}
+
+
+        
+
+
+    </div>
+    <div class="card-footer">
+        <div class="stats rtl ">
+            <i class="material-icons text-success">warning</i>
+            <a href="{{selected_profile.get_absolute_url}}">نمایش پروفایل</a>
+
+            <i class="material-icons text-danger mr-3">warning</i>
+            <a href="{{selected_profile.get_edit_url}}">ویرایش پروفایل</a>
+        </div>
+    </div>
+</div>

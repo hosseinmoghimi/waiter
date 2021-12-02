@@ -1,0 +1,218 @@
+<nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg navbar-transparent" color-on-scroll="100"
+    id="sectionsNav">
+    <div class="container rtl">
+        <div class="navbar-translate">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{market_link.value}}">
+                <span class="farsi">
+
+                    {% if market_title %}
+
+                    {{market_title.value}}
+                    {% else %}
+                    خانه
+                    {% endif %}
+                </span>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto rtl">
+                {% if navbar %}
+
+                {% include navbar %}
+                {% endif %}
+                {% if DEBUG %}
+
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">apps</i>
+                        <span class="farsi">
+
+                            اجزای صفحه
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="https://demos.creative-tim.com/material-kit-pro/presentation.html"
+                            class="dropdown-item">
+                            <i class="material-icons">line_style</i> Presentation
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/index.html" class="dropdown-item">
+                            <i class="material-icons">layers</i> All Components
+                        </a>
+                        <a href="http://demos.creative-tim.com/material-kit-pro/docs/2.1/getting-started/introduction.html"
+                            class="dropdown-item">
+                            <i class="material-icons">content_paste</i> Documentation
+                        </a>
+                    </div>
+                </li>
+
+                {% endif %}
+                {% if apps and DEBUG %}
+
+
+
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">apps</i>
+                        <span class="farsi">
+
+                            برنامه ها
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        {% for app in apps %}
+
+                        <a href="{{app.home_url}}" class="dropdown-item">
+                            <i class="material-icons">line_style</i>
+                            <span class="farsi">
+                                {{app.title}}
+                            </span>
+                        </a>
+
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endif %}
+                {% if DEBUG %}
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">view_day</i> Sections
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#headers"
+                            class="dropdown-item">
+                            <i class="material-icons">dns</i> Headers
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#features"
+                            class="dropdown-item">
+                            <i class="material-icons">build</i> Features
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#blogs"
+                            class="dropdown-item">
+                            <i class="material-icons">list</i> Blogs
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#teams"
+                            class="dropdown-item">
+                            <i class="material-icons">people</i> Teams
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#projects"
+                            class="dropdown-item">
+                            <i class="material-icons">assignment</i> Projects
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#pricing"
+                            class="dropdown-item">
+                            <i class="material-icons">monetization_on</i> Pricing
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#testimonials"
+                            class="dropdown-item">
+                            <i class="material-icons">chat</i> Testimonials
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/sections.html#contactus"
+                            class="dropdown-item">
+                            <i class="material-icons">call</i> Contacts
+                        </a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">view_carousel</i> Examples
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="./examples/about-us.html" class="dropdown-item">
+                            <i class="material-icons">account_balance</i> About Us
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/blog-post.html"
+                            class="dropdown-item">
+                            <i class="material-icons">art_track</i> Blog Post
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/blog-posts.html"
+                            class="dropdown-item">
+                            <i class="material-icons">view_quilt</i> Blog Posts
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/contact-us.html"
+                            class="dropdown-item">
+                            <i class="material-icons">location_on</i> Contact Us
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/landing-page.html"
+                            class="dropdown-item">
+                            <i class="material-icons">view_day</i> Landing Page
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/login-page.html"
+                            class="dropdown-item">
+                            <i class="material-icons">fingerprint</i> Login Page
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/pricing.html"
+                            class="dropdown-item">
+                            <i class="material-icons">attach_money</i> Pricing Page
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/shopping-cart.html"
+                            class="dropdown-item">
+                            <i class="material-icons">shopping_basket</i> Shopping Cart
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/ecommerce.html"
+                            class="dropdown-item">
+                            <i class="material-icons">store</i> Ecommerce Page
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/product-page.html"
+                            class="dropdown-item">
+                            <i class="material-icons">shopping_cart</i> Product Page
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/profile-page.html"
+                            class="dropdown-item">
+                            <i class="material-icons">account_circle</i> Profile Page
+                        </a>
+                        <a href="https://demos.creative-tim.com/material-kit-pro/examples/signup-page.html"
+                            class="dropdown-item">
+                            <i class="material-icons">person_add</i> Signup Page
+                        </a>
+                    </div>
+                </li>
+
+                {% endif %}
+                {% if profile_button %}
+
+                <li class="button-container nav-item iframe-extern">
+                    <a href="{{profile_button.url}}"
+                        class="btn mx-2 btn-{{profile_button.color}} btn-round btn-block farsi">
+                        <span class="farsi">
+                            {{profile_button.title}}
+                        </span>
+                        <i class="material-icons">{{profile_button.icon}}</i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if perms.core.change_basicpage %}
+
+                <li class="button-container nav-item iframe-extern">
+                    <a href="{{ADMIN_URL}}{{APP_NAME}}" target="_blank" class="btn  btn-info mx-2 btn-round btn-block">
+                        <span class="farsi">
+
+                            مدیریت
+                        </span>
+                        <i class="material-icons">settings</i>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if search_form %}
+                <li class="button-container nav-item iframe-extern">
+                    <form action="{% url 'market:search' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" style="padding: 20px 30px;background-color: #eeeeee66;border-radius:100px"
+                            required class="mx-2 form-control farsi search-for" placeholder="جستجو ..." name="search_for">
+                    </form>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </div>
+</nav>

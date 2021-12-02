@@ -1,0 +1,229 @@
+
+
+{% extends "dashboard/layout.html" %}
+{% load static %}
+
+{% load to_price %}
+
+{% block head %}
+  
+{% endblock  %}
+
+
+{% block ofbar %}
+  
+{% endblock  %}
+
+
+{% block content %}
+  
+<div class="content">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-rose">
+                            <div class="card-icon">
+                                <i class="material-icons"   aria-hidden="true" >assignment</i>
+                            </div>
+                            <h4 class="card-title ">حقوق پرسنل</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <th>
+                                            ردیف
+                                        </th>
+                                        <th>
+                                            نام
+                                        </th>
+                                        <th>
+                                            کشور
+                                        </th>
+                                        <th>
+                                            شهر
+                                        </th>
+                                        <th>
+                                            حقوق
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        {% for notification in notifications %}
+                                          
+                                        <tr>
+                                            <td>
+                                                {{forloop.counter}}
+                                            </td>
+                                            <td>
+                                              {{notification.name}}
+                                            </td>
+                                            <td>
+                                                {{notification.country}}
+                                            </td>
+                                            <td>
+                                                {{notification.city}}
+                                            </td>
+                                            <td>
+                                                {{notification.salary|to_price}}
+                                            </td>
+                                        </tr>
+                                       
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card card-plain">
+                        <div class="card-header card-header-icon card-header-rose">
+                            <div class="card-icon">
+                                <i class="material-icons"   aria-hidden="true" >assignment</i>
+                            </div>
+                            <h4 class="card-title mt-0"> Table on Plain Background</h4>
+                            <p class="card-category"> Here is a subtitle for this table</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="">
+                                        <th>
+                                            ردیف
+                                        </th>
+                                        <th>
+                                            نام
+                                        </th>
+                                        <th>
+                                            کشور
+                                        </th>
+                                        <th>
+                                            شهر
+                                        </th>
+                                        <th>
+                                            حقوق
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        {% for notification in notifications %}
+                                          
+                                        <tr class="{{notification.get_color}}">
+                                            <td>
+                                                {{forloop.counter}}
+                                            </td>
+                                            <td>
+                                              {{notification.name}}
+                                            </td>
+                                            <td>
+                                                {{notification.country}}
+                                            </td>
+                                            <td>
+                                                {{notification.city}}
+                                            </td>
+                                            <td>
+                                                {{notification.salary|to_price}}
+                                            </td>
+                                        </tr>
+                                       
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-rose">
+                            <div class="card-icon">
+                                <i class="material-icons"   aria-hidden="true" >assignment</i>
+                            </div>
+                            <h4 class="card-title "> Regular Table with Colors</h4>
+                        </div>
+                        <div class="card-body table-full-width table-hover">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="">
+                                        <th>
+                                            ردیف
+                                        </th>
+                                        <th>
+                                            نام
+                                        </th>
+                                        <th>
+                                            کشور
+                                        </th>
+                                        <th>
+                                            شهر
+                                        </th>
+                                        <th>
+                                            حقوق
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        {% for notification in notifications %}
+                                          
+                                        <tr class="{{notification.get_color}}">
+                                            <td>
+                                                {{forloop.counter}}
+                                            </td>
+                                            <td>
+                                              {{notification.name}}
+                                            </td>
+                                            <td>
+                                                {{notification.country}}
+                                            </td>
+                                            <td>
+                                                {{notification.city}}
+                                            </td>
+                                            <td>
+                                                {{notification.salary|to_price}}
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-link btn-facebook" href="{{notification.get_edit_url}}">
+                                                    <i class="fa fa-facebook-square"></i> ویرایش
+                                                  <div class="ripple-container"></div></a>
+
+
+
+                                                  <button class="btn btn-link btn-youtube">
+                                                    <i class="fa fa-youtube-play"></i> View on Youtube
+                                                  <div class="ripple-container"></div></button>
+
+                                                
+                                            </td>
+                                        </tr>
+                                       
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}
+
+
+
+{% block modal %}
+  
+{% endblock  %}
+
+
+
+{% block script %}
+  <script>
+    $("#nav-item-tables-regular").addClass("active")
+      $("#tablesExamples").addClass("show")
+  </script>
+{% endblock  %}

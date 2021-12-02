@@ -1,0 +1,183 @@
+{% extends "dashboard/layout.html" %}
+{% load static %}
+{% load to_persian_date %}
+
+{% block head %}
+<style>
+    .close {
+        float: left !important;
+        right: 10px !important;
+        left: auto !important;
+    }
+</style>
+{% endblock  %}
+
+
+{% block ofbar %}
+
+{% endblock  %}
+
+
+{% block content %}
+
+
+
+<div class="row">
+    {% if notifications_unseen %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-info">
+                <div class="card-icon">
+                    <i class="material-icons"   aria-hidden="true" >notifications</i>
+                </div>
+                <h4 class="card-title farsi text-right">اعلان ها
+
+                    <small> - دیده نشده</small>
+                </h4>
+            </div>
+
+
+
+            <div class="card-body">
+                {% for notification in notifications_unseen  %}
+                <div class="alert alert-{{notification.color}} alert-with-icon" data-notify="container">
+                    <a href="{{notification.get_absolute_url}}">
+                        <i class="material-icons" data-notify="icon">
+                            {{notification.icon.icon_material}}
+                        </i>
+                    </a>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons"   aria-hidden="true" >close</i>
+                    </button>
+                    <span data-notify="message">
+                        <a href="{{notification.get_absolute_url}}">
+                            <h3 class="farsi text-right">
+                                {{notification.title}}
+                            </h3>
+                        </a>
+
+
+                        <div class="text-right ">
+                            <small>
+                                <small>
+                                    {{notification.date_added|to_persian_date|safe}}
+                                </small>
+                            </small>
+                        </div>
+
+                    </span>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+    {% if notifications_seen %}
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-secondary">
+                <div class="card-icon">
+                    <i class="material-icons"   aria-hidden="true" >notifications</i>
+                </div>
+                <h4 class="card-title farsi text-right">اعلان ها
+
+                    <small> - دیده شده</small>
+                </h4>
+            </div>
+
+
+
+            <div class="card-body">
+                {% for notification in notifications_seen  %}
+                <div class="alert alert-{{notification.color}} alert-with-icon" data-notify="container">
+                    <a href="{{notification.get_absolute_url}}">
+                        <i class="material-icons" data-notify="icon">
+                            {{notification.icon.icon_material}}
+                        </i>
+                    </a>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons"   aria-hidden="true" >close</i>
+                    </button>
+                    <span data-notify="message">
+                        <a href="{{notification.get_absolute_url}}">
+                            <h3 class="farsi text-right">
+                                {{notification.title}}
+                            </h3>
+                        </a>
+
+
+                        <div class="text-right ">
+                            <small>
+                                <small>
+                                    {{notification.date_added|to_persian_date|safe}}
+                                </small>
+                            </small>
+                        </div>
+
+                    </span>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    {% if notification %}
+    <div class="col-12">
+
+
+
+
+
+        <div class="alert alert-{{notification.color}} alert-with-icon" data-notify="container">
+            <i class="material-icons" data-notify="icon">
+                {{notification.icon.icon_material}}
+            </i>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons"   aria-hidden="true" >close</i>
+            </button>
+            <span data-notify="message">
+                <h3 class="farsi text-right">
+                    {{notification.title}}
+                </h3>
+                <div class="text-right ">
+                    <small>
+                        <small>
+                            {{notification.date_added|to_persian_date|safe}}
+                        </small>
+                    </small>
+                </div>
+                <p>
+                    {{notification.body}}
+
+                </p>
+
+            </span>
+        </div>
+        <p>
+            <a class="btn btn-{{notification.color}}" tatget="_blank" href="{{notification.url}}">لینک</a>
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock  %}
+
+
+
+{% block modal %}
+
+{% endblock  %}
+
+
+
+{% block script %}
+
+{% endblock  %}

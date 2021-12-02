@@ -1,0 +1,119 @@
+{% load static %}
+<div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-cog fa-2x"> </i>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="header-title">
+          <span class="farsi">
+
+            تنظیمات
+          </span> 
+        
+        </li>
+      
+        
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger active-color">
+            <div class="badge-colors ml-auto mr-auto">
+              <span id="sidebar_active_color_purple" class="badge filter badge-purple" data-color="purple" onclick="CustomizeProfile('sidebar_active_color','purple')"></span>
+              <span id="sidebar_active_color_azure" class="badge filter badge-azure" data-color="azure" onclick="CustomizeProfile('sidebar_active_color','azure')"></span>
+              <span id="sidebar_active_color_green" class="badge filter badge-green" data-color="green" onclick="CustomizeProfile('sidebar_active_color','green')"></span>
+              <span id="sidebar_active_color_warning" class="badge filter badge-warning" data-color="orange" onclick="CustomizeProfile('sidebar_active_color','orange')"></span>
+              <span id="sidebar_active_color_danger" class="badge filter badge-danger" data-color="danger" onclick="CustomizeProfile('sidebar_active_color','danger')"></span>
+              <span id="sidebar_active_color_rose" class="badge filter badge-rose" data-color="rose" onclick="CustomizeProfile('sidebar_active_color','rose')"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="header-title mb-3"><a class="d-block text-center" href="{{profile.get_absolute_url}}"> {{profile.name}}</a></li>
+        <li class="header-title farsi">تصویر زمینه منو</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger background-color">
+            <div class="ml-auto mr-auto">
+              <span id="sidebar_bg_color_black" class="badge filter badge-black" data-background-color="black" onclick="CustomizeProfile('sidebar_bg_color','black')"></span>
+              <span id="sidebar_bg_color_white" class="badge filter badge-white" data-background-color="white" onclick="CustomizeProfile('sidebar_bg_color','white')"></span>
+              <span id="sidebar_bg_color_red" class="badge filter badge-red" data-background-color="red" onclick="CustomizeProfile('sidebar_bg_color','red')"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger">
+            <p>Sidebar Mini</p>
+            <label class="ml-auto">
+              <div class="togglebutton switch-sidebar-mini">
+                <label>
+                  <input type="checkbox">
+                  <span class="toggle"></span>
+                </label>
+              </div>
+            </label>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger">
+            <p>Sidebar Images</p>
+            <label class="switch-mini ml-auto">
+              <div class="togglebutton switch-sidebar-image">
+                <label>
+                  <input type="checkbox" checked="">
+                  <span class="toggle"></span>
+                </label>
+              </div>
+            </label>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="header-title farsi">آخرین مقالات</li>
+        <li class="active">
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="https://demos.creative-tim.com/material-dashboard-pro/assets/img/sidebar-1.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="https://demos.creative-tim.com/material-dashboard-pro/assets/img/sidebar-2.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="https://demos.creative-tim.com/material-dashboard-pro/assets/img/sidebar-3.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="https://demos.creative-tim.com/material-dashboard-pro/assets/img/sidebar-4.jpg" alt="">
+          </a>
+        </li>
+        <li class="button-container">
+          <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank"
+            class="btn btn-rose btn-block btn-fill">ثبت نام کنید</a>
+          <a href="https://demos.creative-tim.com/material-dashboard-pro/docs/2.1/getting-started/introduction.html"
+            target="_blank" class="btn btn-default btn-block">
+            آموزش
+          </a>
+          <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank"
+            class="btn btn-info btn-block farsi" >
+          
+            پروژه جدید
+          
+          </a>
+        </li>
+        <li class="button-container github-star">
+          <a class="github-button" href="https://github.com/creativetimofficial/ct-material-dashboard-pro"
+            data-icon="octicon-star" data-size="large" data-show-count="true"
+            aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+        </li>
+        <li class="header-title">Thank you for 95 shares!</li>
+        <li class="button-container text-center">
+          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
+          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
+          <br>
+          <br>
+        </li>
+      </ul>
+    </div>
+  </div>

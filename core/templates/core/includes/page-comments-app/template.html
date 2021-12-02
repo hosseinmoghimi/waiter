@@ -1,0 +1,50 @@
+{% load to_persian_date %}
+
+<div id="accordion-page-comments">
+
+    <div class="card mb-3" id="page-comments-app">
+        <div class="card-header" id="headingComments">
+            <h5 class="text-center">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseseComments"
+                    aria-expanded="true" aria-controls="collapseseComments">
+                    نظرات
+                </button>
+            </h5>
+        </div>
+        <div id="collapseseComments" class="collapse" aria-labelledby="headingComments" 
+        data-parent="#accordion-page-comments">
+
+
+            <div class="card-body">
+              
+                
+                <div class="py-3" v-for="page_comment in page_comments">
+                    <page-comment-component :page_comment="page_comment">
+                    </page-comment-component>
+
+                </div>
+                {% if add_page_comment_form %}
+
+                <div class="media">
+                    <img src="{{profile.image}}" class="rounded-circle" width="64" alt="">
+                    <div class="media-body mr-2">
+                        <h6>{{profile.name}}</h6>
+   
+                            <textarea 
+                            id="comment_inputed" 
+                            v-model="comment" 
+                            class="farsi form-control" 
+                            rows="5"
+                            ></textarea>
+                            <button @click="add_comment"
+                             class="btn btn-primary farsi btn-round btn-wd float-right">ثبت نظر</button>
+         
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</div>

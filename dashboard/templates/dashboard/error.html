@@ -1,0 +1,57 @@
+{% extends "authentication/layout.html" %}
+{% load socialaccount %}
+
+{% block content %}
+
+
+<div class="col-lg-6 col-md-6 col-sm-8 ml-auto mr-auto">
+    <div class="card card-login card-hidden">
+        <div class="card-header card-header-{{header_color}} text-center">
+            <h4 class="card-title farsi text-center">
+                {{header_icon|safe}}
+                {{header_text}}
+
+            </h4>
+            <div class=" d-none social-line">
+                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="{% provider_login_url 'google' %}" class="btn btn-just-icon btn-link btn-white">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </div>
+        </div>
+        <div class="card-body ">
+
+            <div class="my-5">
+
+                <!-- <a href="{% provider_login_url 'google' %}">Login with Google</a> -->
+
+                <p class="card-description text-center text-{{message_color}}">
+                    {{message_icon|safe}}
+
+                    {{message_text}}
+                </p>
+
+            </div>
+
+        </div>
+        <div class="card-footer justify-content-center">
+            <div class="text-center">
+                {% for link in links %}
+
+                {{link.get_link_btn|safe}}
+
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
