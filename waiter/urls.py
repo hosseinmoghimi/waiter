@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
-    path('', include('coffeeshop.urls')),
+    path('', include('shop.urls')),
+    path('shop/', include('shop.urls')),
+    path('coffeeshop/', include('coffeeshop.urls')),
+    path('core/', include('core.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('authentication/', include('authentication.urls')),
     path('admin/', admin.site.urls),
 ]
+ 

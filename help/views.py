@@ -3,7 +3,7 @@ from core.views import CoreContext
 from .apps import APP_NAME
 from django.shortcuts import render,reverse
 from django.views import View
-from phoenix.server_settings import apps
+from waiter.server_settings import apps
 TEMPLATE_ROOT="help/"
 
 

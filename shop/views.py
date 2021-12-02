@@ -3,7 +3,7 @@ from django.views import View
 from .apps import APP_NAME
 from core.views import CoreContext
 
-TEMPLATE_ROOT='coffeeshop/'
+TEMPLATE_ROOT='shop/'
 
 
 def getContext(request,*args, **kwargs):

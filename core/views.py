@@ -14,7 +14,7 @@ from .utils import AdminUtility
 from .constants import *
 from django.views import View
 TEMPLATE_ROOT = "core/"
-from phoenix.server_settings import apps
+from waiter.server_settings import apps
 
 def CoreContext(request, *args, **kwargs):
     context = {}

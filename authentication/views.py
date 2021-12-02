@@ -3,7 +3,7 @@ from core.constants import FAILED, SUCCEED
 from django.http.response import Http404
 from authentication.serializers import ProfileSerializer
 from core.settings import SITE_URL
-from phoenix.server_settings import ALLOW_REGISTER_ONLINE
+from waiter.server_settings import ALLOW_REGISTER_ONLINE
 from django.shortcuts import render,redirect
 from .repo import *
 import json

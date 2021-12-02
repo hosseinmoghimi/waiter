@@ -27,7 +27,7 @@ class BasicViews():
         context['app_name']=app_name
         context['parameters']=parameters
         context['parameters_s']=json.dumps(ParameterSerializer(parameters,many=True).data)
-        from phoenix.server_settings import apps
+        from waiter.server_settings import apps
         my_apps=apps
         context['my_apps']=my_apps
         for my_app in my_apps:
